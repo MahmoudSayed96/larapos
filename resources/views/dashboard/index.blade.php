@@ -5,7 +5,7 @@
 
         <section class="content-header">
             <h2>
-                Blank Page <small>it all start here</small>
+                @lang('site.dashboard')
             </h2>
 
             <ol class="breadcrumb">
