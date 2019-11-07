@@ -44,10 +44,12 @@ class UsersController extends Controller
             'password' => 'required|confirmed',
         ]);
 
-        $request_data = $request->except('password');
+        $request_data = $request->except(['password', 'password_confirmation', 'permissions']);
         $request_data['password'] = bcrypt($request->password);
 
         $user = User::create($request_data);
+        $user->syncPermissions($request->permissions);
+        $user->attachRole('admin');
 
         session()->flash('success', \Lang::get('site.added_successfully'));
 

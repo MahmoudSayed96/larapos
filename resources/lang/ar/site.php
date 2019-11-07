@@ -9,10 +9,16 @@ return [
     'updated_successfully' => 'تم تعديل البيانات بنجاح',
     'deleted_successfully' => 'تم حذف البيانات بنجاح',
 
-    'add' => 'أضافة',
+    'create' => 'اضافة',
+    'read' => 'عرض',
+    'update' => 'تعديل',
+    'add' => 'اضافة',
     'edit' => 'تعديل',
     'delete' => 'حذف',
     'search' => 'بحث',
+
+    'categories' => 'الاصناف',
+    'products' => 'المنتجات',
 
     'users' => 'المشرفين',
     'first_name' => 'الاسم الاول',
@@ -22,4 +28,6 @@ return [
 
     'password' => 'كلمة المرور',
     'password_confirmation' => 'تاكيد كلمة المرور',
+
+    'permissions' => 'الصلاحيات',
 ];
