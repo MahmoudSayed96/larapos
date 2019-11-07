@@ -17,11 +17,28 @@
         <section class="content">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">@lang('site.users')</h3>
+                    <h3 class="box-title" style="margin-bottom:20px">@lang('site.users')</h3>
+
+                    <form>
+                        <div class="row">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="search" placeholder="@lang('site.search')">
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-search"></i> @lang('site.search')
+                                    </button>
+                                    <a href="{{ route('dashboard.users.create') }}" class="btn btn-success">
+                                        <i class="fa fa-plus"></i> @lang('site.add')
+                                    </a>
+                                </div>
+                            </div>
+                    </form><!-- ./form -->
+
                 </div><!-- ./box-header -->
                 <div class="box-body">
                     @if ($users->count()>0)
-                    <table class="table table-bordered">
+                    <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -43,8 +60,8 @@
                                                 <i class="fa fa-pencil"></i> @lang('site.edit')
                                             </a>
                                             <form action="{{ route('dashboard.users.destroy',$user->id) }}" style="display:inline-block" method="post">                                            @csrf
-                                                {{ csrf_field() }}
-                                                {{ method_field('delete') }}
+                                                    @csrf
+                                                    @method('delete')
                                                 <button type="submit" class="btn btn-danger btn-sm">
                                                     <i class="fa fa-trash"></i> @lang('site.delete')
                                                 </button>
