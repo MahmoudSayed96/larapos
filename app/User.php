@@ -38,4 +38,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getFirstNameAttribute($value)
+    {
+        return \ucfirst($value);
+    } // end of get first Name
+
+    public function getLastNameAttribute($value)
+    {
+        return \ucfirst($value);
+    } // end of get lats name
 }

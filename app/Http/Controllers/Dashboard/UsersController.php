@@ -8,33 +8,17 @@ use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $users = User::all();
         return view('dashboard.users.index', \compact('users'));
     } // end of index
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('dashboard.users.create');
     } // end of create
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -56,48 +40,30 @@ class UsersController extends Controller
         return \redirect()->route('dashboard.users.index');
     } // end of store
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $user)
     {
-        //
-    }
+        return view('dashboard.users.edit', \compact('user'));
+    } // end of edit
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, User $user)
     {
-        //
-    }
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
+
+        $request_data = $request->except(['permissions']);
+        $user->update($request_data);
+
+        $user->syncPermissions($request->permissions);
+
+        session()->flash('success', \Lang::get('site.updated_successfully'));
+
+        return \redirect()->route('dashboard.users.index');
+    } // end of update
+
     public function destroy(User $user)
-    {
-        //
-    }
+    { }
 }

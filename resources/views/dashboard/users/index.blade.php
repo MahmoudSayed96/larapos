@@ -25,7 +25,7 @@
                                     <input type="text" class="form-control" name="search" placeholder="@lang('site.search')">
                                 </div>
                                 <div class="col-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-info">
                                         <i class="fa fa-search"></i> @lang('site.search')
                                     </button>
                                     @if (auth()->user()->hasPermission('create_users'))
@@ -63,8 +63,8 @@
                                         <td>{{ $user->email }}</td>
                                         <td>
                                             @if (auth()->user()->hasPermission('update_users'))
-                                                <a href="{{ route('dashboard.users.edit',$user->id) }}" class="btn btn-default btn-sm">
-                                                    <i class="fa fa-pencil"></i> @lang('site.edit')
+                                                <a href="{{ route('dashboard.users.edit',$user->id) }}" class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-edit"></i> @lang('site.edit')
                                                 </a>
                                             @else
                                                 <a href="javascript:;" class="btn btn-default btn-sm disabled">
