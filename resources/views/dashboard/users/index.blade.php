@@ -28,9 +28,15 @@
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-search"></i> @lang('site.search')
                                     </button>
-                                    <a href="{{ route('dashboard.users.create') }}" class="btn btn-success">
-                                        <i class="fa fa-plus"></i> @lang('site.add')
-                                    </a>
+                                    @if (auth()->user()->hasPermission('create_users'))
+                                        <a href="{{ route('dashboard.users.create') }}" class="btn btn-success">
+                                            <i class="fa fa-plus"></i> @lang('site.add')
+                                        </a>
+                                    @else
+                                        <a href="javascript:;" class="btn btn-success disabled">
+                                            <i class="fa fa-plus"></i> @lang('site.add')
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                     </form><!-- ./form -->
@@ -56,16 +62,28 @@
                                         <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
-                                            <a href="{{ route('dashboard.users.edit',$user->id) }}" class="btn btn-default btn-sm">
-                                                <i class="fa fa-pencil"></i> @lang('site.edit')
-                                            </a>
-                                            <form action="{{ route('dashboard.users.destroy',$user->id) }}" style="display:inline-block" method="post">                                            @csrf
+                                            @if (auth()->user()->hasPermission('update_users'))
+                                                <a href="{{ route('dashboard.users.edit',$user->id) }}" class="btn btn-default btn-sm">
+                                                    <i class="fa fa-pencil"></i> @lang('site.edit')
+                                                </a>
+                                            @else
+                                                <a href="javascript:;" class="btn btn-default btn-sm disabled">
+                                                    <i class="fa fa-pencil"></i> @lang('site.edit')
+                                                </a>
+                                            @endif
+                                            @if (auth()->user()->hasPermission('delete_users'))
+                                                <form action="{{ route('dashboard.users.destroy',$user->id) }}" style="display:inline-block" method="post">                                            @csrf
                                                     @csrf
                                                     @method('delete')
-                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-trash"></i> @lang('site.delete')
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <button type="submit" class="btn btn-danger btn-sm disabled">
                                                     <i class="fa fa-trash"></i> @lang('site.delete')
                                                 </button>
-                                            </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
