@@ -9,6 +9,12 @@ return [
     'updated_successfully' => 'تم تعديل البيانات بنجاح',
     'deleted_successfully' => 'تم حذف البيانات بنجاح',
 
+    'yes' => 'نعم',
+    'no' => 'لا',
+    'cancel' => 'الغاء',
+    'are_you_sure' => 'هل انت متاكد؟',
+    'confirm_delete' => 'لن تتمكن من استعادة هذا المستخدم مرة اخرى',
+
     'create' => 'اضافة',
     'read' => 'عرض',
     'update' => 'تعديل',

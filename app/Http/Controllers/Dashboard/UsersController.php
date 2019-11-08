@@ -89,5 +89,11 @@ class UsersController extends Controller
     } // end of update
 
     public function destroy(User $user)
-    { }
+    {
+        $user->delete();
+
+        session()->flash('success', \Lang::get('site.deleted_successfully'));
+
+        return \redirect()->route('dashboard.users.index');
+    } // end of destroy
 }
