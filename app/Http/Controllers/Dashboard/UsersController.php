@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
@@ -42,10 +43,12 @@ class UsersController extends Controller
     {
 
         $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-            'password' => 'required|confirmed',
+            'first_name'        => 'required',
+            'last_name'         => 'required',
+            'email'             => 'required|unique:users',
+            'image'             => 'image',
+            'password'          => 'required|confirmed',
+            'permissions'       => 'required:1',
         ]);
 
         $request_data = $request->except(['password', 'password_confirmation', 'permissions', 'image']);
@@ -82,13 +85,32 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
+            'first_name'        => 'required',
+            'last_name'         => 'required',
+            'email'             => ['required', Rule::unique('users')->ignore($user->id)],
+            'image'             => 'image',
+            'permissions'       => 'required:1',
         ]);
 
+        $request_data = $request->except(['permissions', 'image']);
 
-        $request_data = $request->except(['permissions']);
+        if ($request->image) {
+
+            if ($user->image != 'default.png') {
+                // delete old image
+                \Storage::disk('public_uploads')->delete('/images/users/' . $user->image);
+            } // end if check default
+
+            $img = Image::make($request->image);
+            $img->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            // save image
+            $img->save(public_path('uploads/images/users/' . $request->image->hashName()));
+
+            $request_data['image'] = $request->image->hashName();
+        } // end if image
+
         $user->update($request_data);
 
         if ($request->permissions) {

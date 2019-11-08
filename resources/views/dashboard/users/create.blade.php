@@ -51,7 +51,11 @@
                         {{-- Image --}}
                         <div class="form-group">
                             <label for="image">@lang('site.image')</label>
-                            <input type="file" class="form-control" name="image">
+                            <input type="file" class="form-control image" name="image">
+                        </div>
+                        {{-- Show default user Image --}}
+                        <div class="form-group">
+                            <img src="{{ asset('uploads/images/users/default.png') }}" style="width:100px;" class="img-thumbnail img-preview" alt="default">
                         </div>
                         {{-- Password --}}
                         <div class="form-group">
