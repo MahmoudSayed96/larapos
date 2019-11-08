@@ -77,6 +77,9 @@
     {{--<!-- iCheck -->--}}
     <link rel="stylesheet" href="{{ asset('dashboard/plugins/icheck/all.css') }}">
 
+    {{--<!-- sweetalert -->--}}
+    <link rel="stylesheet" href="{{ asset('dashboard/plugins/sweetalert/sweetalert.css') }}">
+
     {{--html in  ie--}}
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -340,6 +343,33 @@
 {{--custom js--}}
 <script src="{{ asset('dashboard/js/custom/image_preview.js') }}"></script>
 <script src="{{ asset('dashboard/js/custom/order.js') }}"></script>
+
+{{-- sweetalert --}}
+<script src="{{ asset('dashboard/plugins/sweetalert/sweetalert.min.js') }}"></script>
+<script>
+
+    $('.delete').click(function(e){
+        e.preventDefault();
+
+        var that = $(this);
+        swal({
+                title: "@lang('site.are_you_sure')",
+                text: "@lang('site.confirm_delete')",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "@lang('site.yes')",
+                cancelButtonText: "@lang('site.cancel')",
+                closeOnConfirm: false
+            },
+            function(){
+                // yes button
+                // submite the nearest form
+                that.closest('form').submit();
+            //swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        });
+    });
+</script>
 
 @stack('scripts')
 </body>
