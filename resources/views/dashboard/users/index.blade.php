@@ -5,7 +5,7 @@
 
         <section class="content-header">
             <h2>
-                @lang('site.users')
+                @lang('site.users') <span class="badge">{{ $users->total() }}</span>
             </h2>
 
             <ol class="breadcrumb">
@@ -22,7 +22,7 @@
                     <form action="{{ route('dashboard.users.index') }}" method="get">
                         <div class="row">
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" name="search" placeholder="@lang('site.search')">
+                                    <input type="text" class="form-control" name="search" value="{{ request()->search }}" placeholder="@lang('site.search')">
                                 </div>
                                 <div class="col-md-4">
                                     <button type="submit" class="btn btn-info">
@@ -89,6 +89,9 @@
                                 @endforeach
                             </tbody>
                         </table><!-- ./table -->
+
+                        {{-- Pagination --}}
+                        {{ $users->appends(request()->query())->links() }}
                     @else
                         <h2 class="text-center">@lang('site.no_data_found')</h2>
                     @endif
