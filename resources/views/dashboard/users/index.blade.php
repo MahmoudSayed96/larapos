@@ -44,13 +44,14 @@
                 </div><!-- ./box-header -->
                 <div class="box-body">
                     @if ($users->count()>0)
-                    <table class="table table-hover">
+                    <table class="table table-hover text-center">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>@lang('site.first_name')</th>
                                     <th>@lang('site.last_name')</th>
                                     <th>@lang('site.email')</th>
+                                    <th>@lang('site.image')</th>
                                     <th>@lang('site.actions')</th>
                                 </tr>
                             </thead>
@@ -61,6 +62,10 @@
                                         <td>{{ $user->first_name }}</td>
                                         <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>
+
+                                            <img src="{{ $user->image_path }}"  class="img-thumbnail" style="width:50px" alt="">
+                                        </td>
                                         <td>
                                             @if (auth()->user()->hasPermission('update_users'))
                                                 <a href="{{ route('dashboard.users.edit',$user->id) }}" class="btn btn-primary btn-sm">

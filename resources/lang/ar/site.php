@@ -15,6 +15,9 @@ return [
     'are_you_sure' => 'هل انت متاكد؟',
     'confirm_delete' => 'لن تتمكن من استعادة هذا المستخدم مرة اخرى',
 
+
+    'permissions' => 'الصلاحيات',
+
     'create' => 'اضافة',
     'read' => 'عرض',
     'update' => 'تعديل',
@@ -23,17 +26,16 @@ return [
     'delete' => 'حذف',
     'search' => 'بحث',
 
-    'categories' => 'الاصناف',
-    'products' => 'المنتجات',
-
     'users' => 'المشرفين',
     'first_name' => 'الاسم الاول',
     'last_name' => 'الاسم الاخير',
     'email' => 'البريد الالكترونى',
+    'image' => 'صورة',
     'actions' => 'التحكم',
 
     'password' => 'كلمة المرور',
     'password_confirmation' => 'تاكيد كلمة المرور',
 
-    'permissions' => 'الصلاحيات',
+    'categories' => 'الاصناف',
+    'products' => 'المنتجات',
 ];
