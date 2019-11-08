@@ -14,11 +14,21 @@ class UsersController extends Controller
         $this->middleware('permission:read_users')->only('index');
         $this->middleware('permission:update_users')->only('edit');
         $this->middleware('permission:delete_users')->only('destroy');
-    }
+    } // end of construct
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+
+        $users = User::whereRoleIs('admin')
+            ->where(function ($q) use ($request) {
+
+                return $q->when($request->search, function ($query) use ($request) {
+
+                    return $query->where('first_name', 'like', '%' . $request->search . '%')
+                        ->orWhere('last_name', 'like', '%' . $request->search . '%');
+                });
+            })->get();
+
         return view('dashboard.users.index', \compact('users'));
     } // end of index
 
@@ -29,6 +39,7 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -40,8 +51,11 @@ class UsersController extends Controller
         $request_data['password'] = bcrypt($request->password);
 
         $user = User::create($request_data);
-        $user->syncPermissions($request->permissions);
         $user->attachRole('admin');
+
+        if ($request->permissions) {
+            $user->syncPermissions($request->permissions);
+        }
 
         session()->flash('success', \Lang::get('site.added_successfully'));
 
@@ -65,7 +79,9 @@ class UsersController extends Controller
         $request_data = $request->except(['permissions']);
         $user->update($request_data);
 
-        $user->syncPermissions($request->permissions);
+        if ($request->permissions) {
+            $user->syncPermissions($request->permissions);
+        }
 
         session()->flash('success', \Lang::get('site.updated_successfully'));
 

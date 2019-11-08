@@ -18,8 +18,8 @@
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title" style="margin-bottom:20px">@lang('site.users')</h3>
-
-                    <form>
+                    {{-- Search form --}}
+                    <form action="{{ route('dashboard.users.index') }}" method="get">
                         <div class="row">
                                 <div class="col-md-4">
                                     <input type="text" class="form-control" name="search" placeholder="@lang('site.search')">
@@ -39,7 +39,7 @@
                                     @endif
                                 </div>
                             </div>
-                    </form><!-- ./form -->
+                    </form><!-- ./search form -->
 
                 </div><!-- ./box-header -->
                 <div class="box-body">
