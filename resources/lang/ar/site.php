@@ -40,5 +40,7 @@ return [
     'password_confirmation' => 'تاكيد كلمة المرور',
 
     'categories' => 'الاقسام',
+    'name' => 'الاسم',
+
     'products' => 'المنتجات',
 ];

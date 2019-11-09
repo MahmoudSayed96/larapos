@@ -11,6 +11,9 @@ Route::group(
 
             // Users routes
             Route::resource('users', 'UsersController')->except(['show']);
+
+            // categories routes
+            Route::resource('categories', 'CategoriesController');
         }); // End dashboard routes
     }
 ); // end localization group routes
