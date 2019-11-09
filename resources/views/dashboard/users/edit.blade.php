@@ -36,17 +36,17 @@
                     {{-- First Name --}}
                     <div class="form-group">
                         <label for="first_name">@lang('site.first_name')</label>
-                        <input type="text" class="form-control" name="first_name" value="{{ $user->first_name }}">
+                        <input type="text" class="form-control" name="first_name" value="{{ $user->first_name }}" required>
                     </div>
                     {{-- Last Name --}}
                     <div class="form-group">
                         <label for="last_name">@lang('site.last_name')</label>
-                        <input type="text" class="form-control" name="last_name" value="{{ $user->last_name }}">
+                        <input type="text" class="form-control" name="last_name" value="{{ $user->last_name }}" required>
                     </div>
                     {{-- Email --}}
                     <div class="form-group">
                         <label for="email">@lang('site.email')</label>
-                        <input type="email" class="form-control" name="email" value="{{ $user->email }}">
+                        <input type="email" class="form-control" name="email" value="{{ $user->email }}" required>
                     </div>
 
                     {{-- Image --}}

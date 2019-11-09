@@ -36,17 +36,17 @@
                         {{-- First Name --}}
                         <div class="form-group">
                             <label for="first_name">@lang('site.first_name')</label>
-                            <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}">
+                            <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required>
                         </div>
                         {{-- Last Name --}}
                         <div class="form-group">
                             <label for="last_name">@lang('site.last_name')</label>
-                            <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}">
+                            <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required>
                         </div>
                         {{-- Email --}}
                         <div class="form-group">
                             <label for="email">@lang('site.email')</label>
-                            <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                            <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
                         </div>
                         {{-- Image --}}
                         <div class="form-group">
@@ -60,12 +60,12 @@
                         {{-- Password --}}
                         <div class="form-group">
                             <label for="password">@lang('site.password')</label>
-                            <input type="password" class="form-control" name="password">
+                            <input type="password" class="form-control" name="password" required>
                         </div>
                         {{-- Password Confirmation --}}
                         <div class="form-group">
                             <label for="password_confirmation">@lang('site.password_confirmation')</label>
-                            <input type="password" class="form-control" name="password_confirmation">
+                            <input type="password" class="form-control" name="password_confirmation" required>
                         </div>
 
                         {{-- Permissions --}}
