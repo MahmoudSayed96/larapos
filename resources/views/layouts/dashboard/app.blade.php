@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Blank Page</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>AdminLTE 2 | Blank Page</title>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    {{--<!-- Bootstrap 3.3.7 -->--}}
-    <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('dashboard/css/ionicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('dashboard/css/skin-blue.min.css') }}">
+        {{--<!-- Bootstrap 3.3.7 -->--}}
+        <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('dashboard/css/ionicons.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('dashboard/css/skin-blue.min.css') }}">
 
-    @if (app()->getLocale() == 'ar')
-        <link rel="stylesheet" href="{{ asset('dashboard/css/font-awesome-rtl.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('dashboard/css/AdminLTE-rtl.min.css') }}">
-        <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap-rtl.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('dashboard/css/rtl.css') }}">
+        @if (app()->getLocale() == 'ar')
+            <link rel="stylesheet" href="{{ asset('dashboard/css/font-awesome-rtl.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('dashboard/css/AdminLTE-rtl.min.css') }}">
+            <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap-rtl.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('dashboard/css/rtl.css') }}">
 
-        <style>
-            body, h1, h2, h3, h4, h5, h6 {
-                font-family: 'Cairo', sans-serif !important;
-            }
-        </style>
-    @else
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-        <link rel="stylesheet" href="{{ asset('dashboard/css/font-awesome.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('dashboard/css/AdminLTE.min.css') }}">
-    @endif
+            <style>
+                body, h1, h2, h3, h4, h5, h6 {
+                    font-family: 'Cairo', sans-serif !important;
+                }
+            </style>
+        @else
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+            <link rel="stylesheet" href="{{ asset('dashboard/css/font-awesome.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('dashboard/css/AdminLTE.min.css') }}">
+        @endif
 
     <style>
         .mr-2{
@@ -84,10 +84,10 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
-</head>
-<body class="hold-transition skin-blue sidebar-mini">
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
 
-<div class="wrapper">
+    <div class="wrapper">
 
     <header class="main-header">
         <!-- Logo -->
@@ -247,51 +247,38 @@
                 </li>
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="{{ asset("dashboard/img/user2-160x160.jpg") }}" class="user-image" alt="User Image">
-                    <span class="hidden-xs">
-                        {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
-                    </span>
-                </a>
-                <ul class="dropdown-menu">
-                    <!-- User image -->
-                    <li class="user-header">
-                    <img src="{{ asset("dashboard/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{ asset("dashboard/img/user2-160x160.jpg") }}" class="user-image" alt="User Image">
+                        <span class="hidden-xs">
+                            {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                        <img src="{{ asset("dashboard/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image">
 
-                    <p>
-                        {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
-                        <small>Member since Nov. 2012</small>
-                    </p>
-                    </li>
-                    <!-- Menu Body -->
-                    <li class="user-body">
-                    <div class="row">
-                        <div class="col-xs-4 text-center">
-                        <a href="#">Followers</a>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                        <a href="#">Sales</a>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                        <a href="#">Friends</a>
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                    </li>
-                    <!-- Menu Footer-->
-                    <li class="user-footer">
-                    <div class="pull-left">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    </div>
-                    <div class="pull-right">
-                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                    </div>
-                    </li>
-                </ul>
+                        <p>
+                            {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
+                            <small>Member since Nov. 2012</small>
+                        </p>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            {{-- Logout form --}}
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    <i class="fa fa-sign-out"></i> @lang('site.sign_out')
+                                </button>
+                            </form>
+                            {{-- ./Logout form --}}
+                        </li>
+                    </ul>
                 </li>
                 <!-- Control Sidebar Toggle Button -->
                 <li>
-                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li>
             </ul>
             </div>
@@ -313,78 +300,88 @@
         reserved.
     </footer>
 
-</div><!-- end of wrapper -->
+    </div><!-- end of wrapper -->
 
-{{--<!-- Bootstrap 3.3.7 -->--}}
-<script src="{{ asset('dashboard/js/bootstrap.min.js') }}"></script>
+    {{--<!-- Bootstrap 3.3.7 -->--}}
+    <script src="{{ asset('dashboard/js/bootstrap.min.js') }}"></script>
 
-{{--icheck--}}
-<script src="{{ asset('dashboard/plugins/icheck/icheck.min.js') }}"></script>
+    {{--icheck--}}
+    <script src="{{ asset('dashboard/plugins/icheck/icheck.min.js') }}"></script>
 
-{{--<!-- FastClick -->--}}
-<script src="{{ asset('dashboard/js/fastclick.js') }}"></script>
+    {{--<!-- FastClick -->--}}
+    <script src="{{ asset('dashboard/js/fastclick.js') }}"></script>
 
-{{--<!-- AdminLTE App -->--}}
-<script src="{{ asset('dashboard/js/adminlte.min.js') }}"></script>
+    {{--<!-- AdminLTE App -->--}}
+    <script src="{{ asset('dashboard/js/adminlte.min.js') }}"></script>
 
-{{--ckeditor standard--}}
-<script src="{{ asset('dashboard/plugins/ckeditor/ckeditor.js') }}"></script>
+    {{--ckeditor standard--}}
+    <script src="{{ asset('dashboard/plugins/ckeditor/ckeditor.js') }}"></script>
 
-{{--jquery number--}}
-<script src="{{ asset('dashboard/js/jquery.number.min.js') }}"></script>
+    {{--jquery number--}}
+    <script src="{{ asset('dashboard/js/jquery.number.min.js') }}"></script>
 
-{{--print this--}}
-<script src="{{ asset('dashboard/js/printThis.js') }}"></script>
+    {{--print this--}}
+    <script src="{{ asset('dashboard/js/printThis.js') }}"></script>
 
-{{--morris --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="{{ asset('dashboard/plugins/morris/morris.min.js') }}"></script>
+    {{--morris --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="{{ asset('dashboard/plugins/morris/morris.min.js') }}"></script>
 
-{{--custom js--}}
-<script src="{{ asset('dashboard/js/custom/image_preview.js') }}"></script>
-<script src="{{ asset('dashboard/js/custom/order.js') }}"></script>
+    {{--custom js--}}
+    <script src="{{ asset('dashboard/js/custom/image_preview.js') }}"></script>
+    <script src="{{ asset('dashboard/js/custom/order.js') }}"></script>
 
-{{-- sweetalert --}}
-<script src="{{ asset('dashboard/plugins/sweetalert/sweetalert.min.js') }}"></script>
-<script>
+    {{-- sweetalert --}}
+    <script src="{{ asset('dashboard/plugins/sweetalert/sweetalert.min.js') }}"></script>
+    <script>
 
-    // image preview
-    $(".image").change(function() {
-
-        if (this.files && this.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-            $('.img-preview').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
-    // sweetalert delete btn
-    $('.delete').click(function(e){
-        e.preventDefault();
-
-        var that = $(this);
-        swal({
-                title: "@lang('site.are_you_sure')",
-                text: "@lang('site.confirm_delete')",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonClass: "btn-danger",
-                confirmButtonText: "@lang('site.yes')",
-                cancelButtonText: "@lang('site.cancel')",
-                closeOnConfirm: false
-            },
-            function(){
-                // yes button
-                // submite the nearest form
-                that.closest('form').submit();
-            //swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        // iCheck
+        $(function () {
+            $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' /* optional */
+            });
         });
-    });
-</script>
 
-@stack('scripts')
-</body>
+        // sweetalert delete btn
+        $('.delete').click(function(e){
+            e.preventDefault();
+
+            var that = $(this);
+            swal({
+                    title: "@lang('site.are_you_sure')",
+                    text: "@lang('site.confirm_delete')",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "@lang('site.yes')",
+                    cancelButtonText: "@lang('site.cancel')",
+                    closeOnConfirm: false
+                },
+                function(){
+                    // yes button
+                    // submite the nearest form
+                    that.closest('form').submit();
+                //swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            });
+        });
+
+        // image preview
+        $(".image").change(function() {
+
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                $('.img-preview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    </script>
+
+    @stack('scripts')
+    </body>
 </html>

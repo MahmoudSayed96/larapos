@@ -15,6 +15,9 @@ return [
     'are_you_sure' => 'هل انت متاكد؟',
     'confirm_delete' => 'لن تتمكن من استعادة هذا المستخدم مرة اخرى',
 
+    'sign_in' => 'تسجيل الدخول',
+    'sign_out' => 'تسجيل الخروج',
+    'remember_me' => 'تذكرنى',
 
     'permissions' => 'الصلاحيات',
 
@@ -36,6 +39,6 @@ return [
     'password' => 'كلمة المرور',
     'password_confirmation' => 'تاكيد كلمة المرور',
 
-    'categories' => 'الاصناف',
+    'categories' => 'الاقسام',
     'products' => 'المنتجات',
 ];
