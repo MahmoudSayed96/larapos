@@ -25,20 +25,18 @@
                 </div><!-- /.box-header -->
 
                 <div class="box-body">
-
                     @include('partials._errors')
-
                     <!-- Form -->
                     <form action="{{ route('dashboard.categories.store') }}" method="post">
                         @csrf
                         @method('post')
-
                         {{-- First Name --}}
                         <div class="form-group">
-                            <label for="name">@lang('site.name')</label>
-                            <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
+                            @foreach (config('translatable.locales') as $locale)
+                                <label for="{{ $locale }}_name">@lang('site.'.$locale.'.name')</label>
+                                <input type="text" class="form-control" id="{{ $locale }}_name" name="{{ $locale }}[name]" value="{{ old($locale.'.name') }}" required>
+                            @endforeach
                         </div>
-
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">
                                 <i class="fa fa-plus"></i> @lang('site.add')

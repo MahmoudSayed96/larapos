@@ -6,14 +6,14 @@ Route::group(
     ['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']],
     function () {
         Route::prefix('dashboard')->name('dashboard.')->middleware(['auth'])->group(function () {
-
+            // Dashboard  routes
             Route::get('index', 'DashboardController@index')->name('index');
-
+            // Categories routes
+            Route::resource('categories', 'CategoriesController');
+            // Products routes
+            Route::resource('products', 'ProductsController');
             // Users routes
             Route::resource('users', 'UsersController')->except(['show']);
-
-            // categories routes
-            Route::resource('categories', 'CategoriesController');
         }); // End dashboard routes
     }
 ); // end localization group routes

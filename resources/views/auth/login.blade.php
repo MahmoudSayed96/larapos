@@ -195,7 +195,7 @@
                     <div class="form-group">
                         <div class="checkbox icheck">
                             <label>
-                                <input type="checkbox"> @lang('site.remember_me')
+                                <input type="checkbox" name="rememberme"> @lang('site.remember_me')
                             </label>
                         </div>
                     </div>
