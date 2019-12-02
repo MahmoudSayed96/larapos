@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Rule;
 
 class CategoriesController extends Controller
 {
@@ -33,14 +34,13 @@ class CategoriesController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'ar.name' => 'required|min:3|max:50|unique:category_translations,name',
-        ]);
-
+        $roles = [];
+        foreach (config('translatable.locales') as $locale) {
+            $roles += [$locale . '.name' => ['required', Rule::unique('category_translations', 'name')]];
+        }
+        $request->validate($roles);
         Category::create($request->all());
-
         session()->flash('success', \Lang::get('site.added_successfully'));
-
         return redirect()->route('dashboard.categories.index');
     } // end of store
 
@@ -57,12 +57,12 @@ class CategoriesController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'name' => 'required|unique:categories,name,' . $category->id . '|min:3|max:50',
-        ]);
-
+        $roles = [];
+        foreach (config('translatable.locales') as $locale) {
+            $roles += [$locale . '.name' => ['required', Rule::unique('category_translations', 'name')->ignore($category->id, 'category_id')]];
+        }
+        $request->validate($roles);
         $category->update($request->all());
-
         session()->flash('success', \Lang::get('site.updated_successfully'));
 
         return redirect()->route('dashboard.categories.index');

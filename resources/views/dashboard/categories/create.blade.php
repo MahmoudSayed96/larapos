@@ -31,12 +31,12 @@
                         @csrf
                         @method('post')
                         {{-- First Name --}}
-                        <div class="form-group">
-                            @foreach (config('translatable.locales') as $locale)
-                                <label for="{{ $locale }}_name">@lang('site.'.$locale.'.name')</label>
-                                <input type="text" class="form-control" id="{{ $locale }}_name" name="{{ $locale }}[name]" value="{{ old($locale.'.name') }}" required>
-                            @endforeach
-                        </div>
+                        @foreach (config('translatable.locales') as $locale)
+                            <div class="form-group">
+                                <label for="{{ $locale }}[name]">@lang('site.'.$locale.'.name')</label>
+                                <input type="text" class="form-control" id="{{ $locale }}[name]" name="{{ $locale }}[name]" value="{{ old($locale.'.name') }}" required>
+                            </div>
+                        @endforeach
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">
                                 <i class="fa fa-plus"></i> @lang('site.add')

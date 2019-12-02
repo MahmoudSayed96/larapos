@@ -34,10 +34,12 @@
                     @method('put')
 
                     {{-- Name --}}
-                    <div class="form-group">
-                        <label for="name">@lang('site.name')</label>
-                        <input type="text" class="form-control" name="name" value="{{ $category->name }}">
-                    </div>
+                    @foreach (config('translatable.locales') as $locale)
+                        <div class="form-group">
+                            <label for="{{ $locale }}_name">@lang('site.'.$locale.'.name')</label>
+                            <input type="text" class="form-control" id="{{ $locale }}_name" name="{{ $locale }}[name]" value="{{ $category->translate($locale)->name }}" required>
+                        </div>
+                    @endforeach
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">
