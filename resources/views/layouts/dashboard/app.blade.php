@@ -334,52 +334,56 @@
     {{-- sweetalert --}}
     <script src="{{ asset('dashboard/plugins/sweetalert/sweetalert.min.js') }}"></script>
     <script>
+        $(document).ready(function(){
+            // iCheck
+            $(function () {
+                $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' /* optional */
+                });
+            });//end of icheck
 
-        // iCheck
-        $(function () {
-            $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' /* optional */
-            });
-        });
+            // sweetalert delete btn
+            $('.delete').click(function(e){
+                e.preventDefault();
 
-        // sweetalert delete btn
-        $('.delete').click(function(e){
-            e.preventDefault();
+                var that = $(this);
+                swal({
+                        title: "@lang('site.are_you_sure')",
+                        text: "@lang('site.confirm_delete')",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "@lang('site.yes')",
+                        cancelButtonText: "@lang('site.cancel')",
+                        closeOnConfirm: false
+                    },
+                    function(){
+                        // yes button
+                        // submite the nearest form
+                        that.closest('form').submit();
+                    //swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                });
+            });// end of sweetalert
 
-            var that = $(this);
-            swal({
-                    title: "@lang('site.are_you_sure')",
-                    text: "@lang('site.confirm_delete')",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonClass: "btn-danger",
-                    confirmButtonText: "@lang('site.yes')",
-                    cancelButtonText: "@lang('site.cancel')",
-                    closeOnConfirm: false
-                },
-                function(){
-                    // yes button
-                    // submite the nearest form
-                    that.closest('form').submit();
-                //swal("Deleted!", "Your imaginary file has been deleted.", "success");
-            });
-        });
+            // image preview
+            $(".image").change(function() {
 
-        // image preview
-        $(".image").change(function() {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
 
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
+                    reader.onload = function(e) {
+                    $('.img-preview').attr('src', e.target.result);
+                    }
 
-                reader.onload = function(e) {
-                $('.img-preview').attr('src', e.target.result);
+                    reader.readAsDataURL(this.files[0]);
                 }
+            });// end of preview image
 
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
+            // Ckeditor config
+            CKEDITOR.config.language="{{ app()->getLocale() }}";
+        });//end of ready
     </script>
 
     @stack('scripts')

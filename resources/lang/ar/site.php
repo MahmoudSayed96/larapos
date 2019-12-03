@@ -40,14 +40,26 @@ return [
     'password_confirmation'         => 'تاكيد كلمة المرور',
 
     'categories'                    => 'الاقسام',
+    'all_categories'                => 'كل الاقسام',
+    'category_id'                   => 'القسم',
+    'products_count'                => 'عدد المنتجات',
+    'related_products'              => 'المنتجات المرتيطة',
     'name'                          => 'الاسم',
 
     'products'                      => 'المنتجات',
+    'description'                   => 'الوصف',
+    'category'                      => 'القسم',
+    'purchase_price'                => 'سعر الشراء',
+    'sale_price'                    => 'سعر البيع',
+    'profit_percent'                => 'الربح',
+    'stock'                         => 'المخزن',
 
     'ar' => [
-        'name'              => 'الاسم باللغة العربية',
+        'name'                     => 'الاسم باللغة العربية',
+        'description'              => 'الوصف باللغة العربية',
     ],
     'en' => [
-        'name'      => 'الاسم باللغة الانجليزية',
+        'name'                     => 'الاسم باللغة الانجليزية',
+        'description'              => 'الوصف باللغة الانجليزية',
     ],
 ];

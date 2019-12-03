@@ -17,15 +17,17 @@
             <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i><span>@lang('site.dashboard')</span></a></li>
             {{-- Categories --}}
             @if (auth()->user()->hasPermission('read_categories'))
-                <li><a href="{{ route('dashboard.categories.index') }}"><i class="fa fa-users"></i><span>@lang('site.categories')</span></a></li>
+                <li><a href="{{ route('dashboard.categories.index') }}"><i class="fa fa-tags"></i><span>@lang('site.categories')</span></a></li>
             @endif
+
+            {{-- Products --}}
+            @if (auth()->user()->hasPermission('read_products'))
+                <li><a href="{{ route('dashboard.products.index') }}"><i class="fa fa-shopping-basket"></i><span>@lang('site.products')</span></a></li>
+            @endif
+
             {{-- Users --}}
             @if (auth()->user()->hasPermission('read_users'))
             <li><a href="{{ route('dashboard.users.index') }}"><i class="fa fa-users"></i><span>@lang('site.users')</span></a></li>
-            @endif
-            {{-- Products --}}
-            @if (auth()->user()->hasPermission('read_products'))
-                <li><a href="{{ route('dashboard.products.index') }}"><i class="fa fa-users"></i><span>@lang('site.products')</span></a></li>
             @endif
 
         </ul>

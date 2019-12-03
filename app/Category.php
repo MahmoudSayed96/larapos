@@ -10,4 +10,9 @@ class Category extends Model
     public $translatedAttributes = ['name'];
     protected $fillable = ['name'];
     protected $guarded = [];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
