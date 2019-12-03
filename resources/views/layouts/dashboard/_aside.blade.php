@@ -25,6 +25,11 @@
                 <li><a href="{{ route('dashboard.products.index') }}"><i class="fa fa-shopping-basket"></i><span>@lang('site.products')</span></a></li>
             @endif
 
+            {{-- Clients --}}
+            @if (auth()->user()->hasPermission('read_clients'))
+            <li><a href="{{ route('dashboard.clients.index') }}"><i class="fa fa-user"></i><span>@lang('site.clients')</span></a></li>
+            @endif
+
             {{-- Users --}}
             @if (auth()->user()->hasPermission('read_users'))
             <li><a href="{{ route('dashboard.users.index') }}"><i class="fa fa-users"></i><span>@lang('site.users')</span></a></li>
