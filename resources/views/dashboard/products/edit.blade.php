@@ -10,7 +10,7 @@
 
         <ol class="breadcrumb">
             <li class="active">
-                <a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a>
+                <a href="{{ route('dashboard.welcome') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a>
             </li>
             <li><a href="{{ route('dashboard.products.index') }}"><i class="fa fa-products"></i> @lang('site.products')</a></li>
             <li class="active">@lang('site.edit')</li>
@@ -69,12 +69,12 @@
                     {{-- Puschase Price --}}
                     <div class="form-group">
                         <label for="purchase_price">@lang('site.purchase_price')</label>
-                        <input type="number" name="purchase_price" id="purchase_price" value="{{ $product->purchase_price }}" class="form-control" placeholder="0.0" required>
+                        <input type="number" step="0.01" name="purchase_price" id="purchase_price" value="{{ $product->purchase_price }}" class="form-control" placeholder="0.0" required>
                     </div>
                         {{-- Sale Price --}}
                         <div class="form-group">
                             <label for="sale_price">@lang('site.sale_price')</label>
-                            <input type="number" name="sale_price" id="sale_price" value="{{ $product->sale_price }}" class="form-control" placeholder="0.0" required>
+                            <input type="number" step="0.01" name="sale_price" id="sale_price" value="{{ $product->sale_price }}" class="form-control" placeholder="0.0" required>
                         </div>
                         {{-- Stock --}}
                         <div class="form-group">

@@ -11,6 +11,13 @@ use Intervention\Image\Facades\Image;
 
 class ProductsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:create_products')->only('create');
+        $this->middleware('permission:read_products')->only('index');
+        $this->middleware('permission:update_products')->only('edit');
+        $this->middleware('permission:delete_products')->only('destroy');
+    }
 
     public function index(Request $request)
     {
@@ -44,13 +51,13 @@ class ProductsController extends Controller
         }
 
         $roles = [
+            'image' => 'image',
             'purchase_price' => 'required|number',
             'sale_price' => 'required|number',
             'stock' => 'required|number',
         ];
 
         $request_data = $request->all();
-
         if ($request->image) {
             $img = Image::make($request->image);
             // resize the image to a width of 300 and constrain aspect ratio (auto height)
@@ -63,14 +70,11 @@ class ProductsController extends Controller
         } // end if image
 
         Product::create($request_data);
+
         session()->flash('success', \Lang::get('site.added_successfully'));
         return \redirect()->route('dashboard.products.index');
     } //end of store
 
-    public function show(Product $product)
-    {
-        //
-    }
 
     public function edit(Product $product)
     {
@@ -90,6 +94,7 @@ class ProductsController extends Controller
         }
 
         $roles = [
+            'image' => 'image',
             'purchase_price' => 'required|number',
             'sale_price' => 'required|number',
             'stock' => 'required|number',
@@ -109,7 +114,8 @@ class ProductsController extends Controller
             // save image
             $img->save(public_path('uploads/images/products/' . $request->image->hashName()));
             $request_data['image'] = $request->image->hashName();
-        } // end if image
+        } //end of image
+
         $product->update($request_data);
         session()->flash('success', \Lang::get('site.updated_successfully'));
         return \redirect()->route('dashboard.products.index');

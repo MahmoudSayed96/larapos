@@ -10,7 +10,7 @@
 
             <ol class="breadcrumb">
                 <li class="active">
-                    <a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a>
+                    <a href="{{ route('dashboard.welcome') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a>
                 </li>
                 <li><a href="{{ route('dashboard.products.index') }}"><i class="fa fa-products"></i> @lang('site.products')</a></li>
                 <li class="active">@lang('site.add')</li>
@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label for="all_categories">@lang('site.category_id')</label>
-                                <select class="form-control" name="category_id">
+                                <select class="form-control" name="category_id" required>
                                     <option value="">@lang('site.all_categories')</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}" {{ $category->id==old('category_id') ? 'selected':''}}>{{ $category->name }}</option>
@@ -61,17 +61,17 @@
                         </div>
                         {{-- Show default user Image --}}
                         <div class="form-group">
-                            <img src="{{ asset('uploads/images/products/default.png') }}" style="width:100px;" class="img-thumbnail img-preview" alt="default">
+                            <img src="{{ asset('uploads/images/products/default.png') }}" style="width:100px;" class="img-thumbnail img-preview" alt="product image">
                         </div>
                         {{-- Puschase Price --}}
                         <div class="form-group">
                             <label for="purchase_price">@lang('site.purchase_price')</label>
-                            <input type="number" name="purchase_price" id="purchase_price" value="{{ old('purchase_price') }}" class="form-control" placeholder="0.0" required>
+                            <input type="number" step="0.01" name="purchase_price" id="purchase_price" value="{{ old('purchase_price') }}" class="form-control" placeholder="0.0" required>
                         </div>
                         {{-- Sale Price --}}
                         <div class="form-group">
                             <label for="sale_price">@lang('site.sale_price')</label>
-                            <input type="number" name="sale_price" id="sale_price" value="{{ old('sale_price') }}" class="form-control" placeholder="0.0" required>
+                            <input type="number" step="0.01" name="sale_price" id="sale_price" value="{{ old('sale_price') }}" class="form-control" placeholder="0.0" required>
                         </div>
                         {{-- Stock --}}
                         <div class="form-group">

@@ -55,4 +55,5 @@ class User extends Authenticatable
     {
         return \ucfirst($value);
     } // end of get lats name
+
 }

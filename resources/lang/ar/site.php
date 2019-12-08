@@ -28,10 +28,19 @@ return [
     'edit'                          => 'تعديل',
     'delete'                        => 'حذف',
     'search'                        => 'بحث',
+    'show'                          => 'عرض',
+    'print'                          => 'طباعة',
 
     'clients'                       => 'العملاء',
+    'client_name'                   => 'اسم العميل',
     'phone'                         => 'التلفون',
     'address'                       => 'العنوان',
+    'orders'                        => 'الطلبات',
+    'add_order'                     => 'اضف طلب',
+    'edit_order'                    => 'تعديل طلب',
+    'created_at'                    => 'تم اضافتة',
+    'status'                        => 'الحالة',
+    'previous_orders'               => 'الطلبات السابقة',
 
     'users'                         => 'المشرفين',
     'first_name'                    => 'الاسم الاول',
@@ -51,12 +60,17 @@ return [
     'name'                          => 'الاسم',
 
     'products'                      => 'المنتجات',
+    'product'                       => 'المنتج',
     'description'                   => 'الوصف',
     'category'                      => 'القسم',
+    'price'                         => 'السعر',
+    'quantity'                      => 'الكمية',
+    'total'                         => 'الاجمالى',
     'purchase_price'                => 'سعر الشراء',
     'sale_price'                    => 'سعر البيع',
     'profit_percent'                => 'الربح',
     'stock'                         => 'المخزن',
+    'show_products'                 => 'عرض المنتجات',
 
     'ar' => [
         'name'                     => 'الاسم باللغة العربية',

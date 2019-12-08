@@ -8,11 +8,17 @@ use App\Http\Controllers\Controller;
 
 class ClientsController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('permission:create_clients')->only('create');
+        $this->middleware('permission:read_clients')->only('index');
+        $this->middleware('permission:update_clients')->only('edit');
+        $this->middleware('permission:delete_clients')->only('destroy');
+    }
     public function index(Request $request)
     {
         // Search operation
-        $clients = Product::when($request->search, function ($query) use ($request) {
+        $clients = Client::when($request->search, function ($query) use ($request) {
             return $query->where('name', 'like', '%' . $request->search . '%')
                 ->orWhere('phone', 'like', '%' . $request->search . '%')
                 ->orWhere('address', 'like', '%' . $request->search . '%');

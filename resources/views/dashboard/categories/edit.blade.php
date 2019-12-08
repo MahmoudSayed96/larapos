@@ -10,7 +10,7 @@
 
         <ol class="breadcrumb">
             <li class="active">
-                <a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a>
+                <a href="{{ route('dashboard.welcome') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a>
             </li>
             <li><a href="{{ route('dashboard.categories.index') }}"><i class="fa fa-categories"></i> @lang('site.categories')</a></li>
             <li class="active">@lang('site.edit')</li>

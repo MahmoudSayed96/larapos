@@ -10,7 +10,7 @@
 
         <ol class="breadcrumb">
             <li class="active">
-                <a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a>
+                <a href="{{ route('dashboard.welcome') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a>
             </li>
             <li><a href="{{ route('dashboard.users.index') }}"><i class="fa fa-users"></i> @lang('site.users')</a></li>
             <li class="active">@lang('site.edit')</li>
@@ -66,7 +66,7 @@
                         <div class="nav-tabs-custom">
 
                             @php
-                                $models=['users','categories','products'];
+                                $models=['users','categories','products','clients','orders'];
                                 $maps=['create','read','update','delete'];
                             @endphp
 

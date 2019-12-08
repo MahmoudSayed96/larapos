@@ -1,77 +1,3 @@
-{{-- @extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection --}}
-
 
 <!DOCTYPE html>
 <html dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
@@ -82,16 +8,16 @@
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
         {{--<!-- Bootstrap 3.3.7 -->--}}
-        <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('dashboard/css/ionicons.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('dashboard/css/skin-blue.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('dashboard_files/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('dashboard_files/css/ionicons.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('dashboard_files/css/skin-blue.min.css') }}">
 
         @if (app()->getLocale() == 'ar')
-            <link rel="stylesheet" href="{{ asset('dashboard/css/font-awesome-rtl.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('dashboard/css/AdminLTE-rtl.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('dashboard_files/css/font-awesome-rtl.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('dashboard_files/css/AdminLTE-rtl.min.css') }}">
             <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
-            <link rel="stylesheet" href="{{ asset('dashboard/css/bootstrap-rtl.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('dashboard/css/rtl.css') }}">
+            <link rel="stylesheet" href="{{ asset('dashboard_files/css/bootstrap-rtl.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('dashboard_files/css/rtl.css') }}">
 
             <style>
                 body, h1, h2, h3, h4, h5, h6 {
@@ -100,8 +26,8 @@
             </style>
         @else
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-            <link rel="stylesheet" href="{{ asset('dashboard/css/font-awesome.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('dashboard/css/AdminLTE.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('dashboard_files/css/font-awesome.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('dashboard_files/css/AdminLTE.min.css') }}">
         @endif
 
         <style>
@@ -140,20 +66,20 @@
 
         </style>
         {{--<!-- jQuery 3 -->--}}
-        <script src="{{ asset('dashboard/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('dashboard_files/js/jquery.min.js') }}"></script>
 
         {{--noty--}}
-        <link rel="stylesheet" href="{{ asset('dashboard/plugins/noty/noty.css') }}">
-        <script src="{{ asset('dashboard/plugins/noty/noty.min.js') }}"></script>
+        <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/noty/noty.css') }}">
+        <script src="{{ asset('dashboard_files/plugins/noty/noty.min.js') }}"></script>
 
         {{--morris--}}
-        <link rel="stylesheet" href="{{ asset('dashboard/plugins/morris/morris.css') }}">
+        <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/morris/morris.css') }}">
 
         {{--<!-- iCheck -->--}}
-        <link rel="stylesheet" href="{{ asset('dashboard/plugins/icheck/all.css') }}">
+        <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/icheck/all.css') }}">
 
         {{--<!-- sweetalert -->--}}
-        <link rel="stylesheet" href="{{ asset('dashboard/plugins/sweetalert/sweetalert.css') }}">
+        <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/sweetalert/sweetalert.css') }}">
 
         {{--html in  ie--}}
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -213,10 +139,10 @@
         <!-- /.login-box -->
 
         {{--<!-- Bootstrap 3.3.7 -->--}}
-        <script src="{{ asset('dashboard/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('dashboard_files/js/bootstrap.min.js') }}"></script>
 
         {{--icheck--}}
-        <script src="{{ asset('dashboard/plugins/icheck/icheck.min.js') }}"></script>
+        <script src="{{ asset('dashboard_files/plugins/icheck/icheck.min.js') }}"></script>
         <script>
             $(function () {
                 $('input').iCheck({

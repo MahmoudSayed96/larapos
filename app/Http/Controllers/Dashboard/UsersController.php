@@ -73,7 +73,6 @@ class UsersController extends Controller
         }
 
         session()->flash('success', \Lang::get('site.added_successfully'));
-
         return \redirect()->route('dashboard.users.index');
     } // end of store
 

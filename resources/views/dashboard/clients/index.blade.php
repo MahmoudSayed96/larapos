@@ -9,7 +9,7 @@
             </h2>
 
             <ol class="breadcrumb">
-                <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i>@lang('site.dashboard')</a></li>
+                <li><a href="{{ route('dashboard.welcome') }}"><i class="fa fa-dashboard"></i>@lang('site.dashboard')</a></li>
                 <li class="active">@lang('site.clients')</li>
             </ol>
         </section>
@@ -51,6 +51,7 @@
                                     <th>@lang('site.name')</th>
                                     <th>@lang('site.phone')</th>
                                     <th>@lang('site.address')</th>
+                                    <th>@lang('site.add_order')</th>
                                     <th>@lang('site.actions')</th>
                                 </tr>
                             </thead>
@@ -59,8 +60,19 @@
                                     <tr>
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $client->name }}</td>
-                                        <td>{{ implode($client->phone,'-') }}</td>
+                                        <td>{{ is_array($client->phone)? implode($client->phone,'-'): $client->phone }}</td>
                                         <td>{!! $client->address !!}</td>
+                                        <td>
+                                            @if (auth()->user()->hasPermission('create_orders'))
+                                                <a href="{{ route('dashboard.clients.orders.create',$client->id) }}" class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-shopping-cart"></i> @lang('site.add_order')
+                                                </a>
+                                            @else
+                                                <a href="javascript:;" class="btn btn-primary btn-sm disabled">
+                                                    <i class="fa fa-shopping-cart"></i> @lang('site.add_order')
+                                                </a>
+                                            @endif
+                                        </td>
                                         <td>
                                             @if (auth()->user()->hasPermission('update_clients'))
                                                 <a href="{{ route('dashboard.clients.edit',$client->id) }}" class="btn btn-primary btn-sm">
