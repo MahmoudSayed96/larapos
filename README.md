@@ -1,2 +1,2 @@
 # larapos
-This is laravel admin lte pos
+This is laravel admin dashboard for e-commerce app
