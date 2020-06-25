@@ -133,8 +133,20 @@ class ProductsController extends Controller
         return \redirect()->route('dashboard.products.index');
     } // end of destroy
 
+
     public function searchBy()
     {
         return 'test';
+    }
+
+    public function productsList(Request $request){
+        $categories = Category::all();
+        // Search operation
+        $products = Product::when($request->search, function ($query) use ($request) {
+            return $query->whereTranslationLike('name', '%' . $request->search . '%');
+        })->when($request->category_id, function ($query) use ($request) {
+            return $query->where('category_id', $request->category_id);
+        })->latest()->paginate(10);
+        return view('dashboard.products.show_products',compact('categories','products'));
     }
 }

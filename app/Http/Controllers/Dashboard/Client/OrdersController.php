@@ -19,7 +19,9 @@ class OrdersController extends Controller
 
     public function create(Client $client)
     {
-        $categories = Category::with('products')->get();
+        $categories = Category::with(['products'=>function($q){
+            $q->where('stock','>',0);
+        }])->get();
         $orders = $client->orders()->paginate(10);
         return view('dashboard.clients.orders.create', \compact('client', 'orders', 'categories'));
     } //end of create

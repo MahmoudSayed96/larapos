@@ -27,7 +27,7 @@
                                 <div class="col-md-4">
                                     {{-- Search by category --}}
                                     <div class="form-group">
-                                        <select class="form-control" id="search_by" name="category_id">
+                                        <select class="form-control select2" id="search_by" name="category_id">
                                             <option value="">@lang('site.all_categories')</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}" {{ $category->id==request()->category_id ? 'selected':''}}>{{ $category->name }}</option>
@@ -65,7 +65,7 @@
                                     <th>@lang('site.image')</th>
                                     <th>@lang('site.purchase_price')</th>
                                     <th>@lang('site.sale_price')</th>
-                                    <th>@lang('site.profit_percent') %</th>
+                                    <th>@lang('site.profit')</th>
                                     <th>@lang('site.stock')</th>
                                     <th>@lang('site.actions')</th>
                                 </tr>
@@ -82,7 +82,7 @@
                                         </td>
                                         <td>{{ $product->purchase_price }}</td>
                                         <td>{{ $product->sale_price }}</td>
-                                        <td>{{ $product->profit_percent }} %</td>
+                                        <td>{{ $product->profit }}</td>
                                         <td>{{ $product->stock }}</td>
                                         <td>
                                             @if (auth()->user()->hasPermission('update_products'))

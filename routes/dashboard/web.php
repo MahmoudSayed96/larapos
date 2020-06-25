@@ -12,6 +12,7 @@ Route::group(
             Route::resource('categories', 'CategoriesController');
             // Products routes
             Route::resource('products', 'ProductsController');
+            Route::get('/show-products','ProductsController@productsList')->name('products.list');
             // Clients routes
             Route::resource('clients', 'ClientsController')->except(['show']);
             Route::resource('clients.orders', 'Client\OrdersController');
@@ -20,6 +21,10 @@ Route::group(
             Route::get('/orders/{order}/products', 'OrdersController@products')->name('orders.products');
             // Users routes
             Route::resource('users', 'UsersController')->except(['show']);
+            // Stock routes
+            Route::get('stock','StockController@index')->name('stock.index');
+            // Reports
+            Route::get('/reports/sales','ReportController@sales')->name('reports.sales');
         }); // End dashboard routes
     }
 ); // end localization group routes

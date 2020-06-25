@@ -61,6 +61,9 @@ return [
 
     'products'                      => 'Products',
     'product'                       => 'Product',
+    'products_list'                 => 'Products List',
+    'show_products'                 => 'Show Products',
+    'add_product'                   => 'Add Product',
     'description'                   => 'Description',
     'category'                      => 'Category',
     'price'                         => 'Price',
@@ -71,6 +74,12 @@ return [
     'profit_percent'                => 'Profit',
     'stock'                         => 'Stock',
     'show_products'                 => 'Show Products',
+    'stock'                         => 'Stock',
+    'no_quantity'                   => 'No quantity exists',
+    'reports'                       => 'Reports',
+    'sales'                         => 'Sales',
+    'sales_quantity'                => 'Sales Quantity',
+    'date'                          => 'Date',
 
     'ar' => [
         'name'                     => 'Arabic Name',

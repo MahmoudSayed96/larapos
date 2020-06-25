@@ -47,13 +47,16 @@
                                                 <div id="{{ str_replace(' ','_',$category->name) }}" class="panel-collapse collapse">
                                                     <div class="panel-body">
                                                         @if ($category->products()->count() > 0)
-                                                        <table class="table table-hover table-bordered">
+                                                        <table class="table table-hover table-bordered dataTable products-table" role="grid" aria-describedby="products_info">
+                                                            <thead>
                                                                 <tr>
-                                                                    <th>@lang('site.name')</th>
-                                                                    <th>@lang('site.stock')</th>
-                                                                    <th>@lang('site.price')</th>
-                                                                    <th>@lang('site.add')</th>
+                                                                    <th class="sorting_asc" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-sort="ascending" aria-label="@lang('site.name'): activate to sort column descending" style="width: 176px;">@lang('site.name')</th>
+                                                                    <th class="sorting" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-label="@lang('site.stock'): activate to sort column ascending" style="width: 223px;">@lang('site.stock')</th>
+                                                                    <th class="sorting" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-label="@lang('site.price'): activate to sort column ascending" style="width: 205px;">@lang('site.price')</th>
+                                                                    <th class="sorting" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-label="@lang('site.add'): activate to sort column ascending" style="width: 152px;">@lang('site.add')</th>
                                                                 </tr>
+                                                            </thead>
+                                                            <tbody>
                                                                 @foreach ($category->products as $product)
                                                                     <tr>
                                                                         <td>{{ $product->name }}</td>
@@ -73,7 +76,8 @@
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
-                                                            </table>
+                                                            </tbody>
+                                                        </table>
                                                         @else
                                                             <h2>@lang('site.no_data_found')</h2>
                                                         @endif
@@ -177,3 +181,12 @@
     </div><!-- ./content wrapper -->
 
 @endsection
+
+@push('scripts')
+    <script>
+        // Datatables
+        $(function () {
+            $(".products-table").DataTable();
+        });
+    </script>
+@endpush

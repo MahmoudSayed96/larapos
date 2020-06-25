@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label for="all_categories">@lang('site.category_id')</label>
-                                <select class="form-control" name="category_id" required>
+                                <select class="form-control select2" name="category_id" required>
                                     <option value="">@lang('site.all_categories')</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}" {{ $category->id==old('category_id') ? 'selected':''}}>{{ $category->name }}</option>

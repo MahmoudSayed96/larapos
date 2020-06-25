@@ -10,7 +10,7 @@ class Product extends Model
     public $translatedAttributes = ['name', 'description'];
     protected $fillable = ['name', 'description', 'image', 'purchase_price', 'sale_price', 'stock', 'category_id'];
     protected $guarded = [];
-    protected $appends = ['image_path', 'profit_percent'];
+    protected $appends = ['image_path', 'profit_percent','profit'];
 
     public function category()
     {
@@ -27,6 +27,12 @@ class Product extends Model
         $profit = $this->sale_price - $this->purchase_price;
         $profit_percent = ($profit * 100) / $this->purchase_price;
         return number_format($profit_percent, 2);
+    } // end of get profit percent
+
+    public function getProfitAttribute()
+    {
+        $profit = $this->sale_price - $this->purchase_price;
+        return number_format($profit, 2);
     } // end of get profit percent
 
     public function Orders()

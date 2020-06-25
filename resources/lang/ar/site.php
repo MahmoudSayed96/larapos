@@ -61,6 +61,9 @@ return [
 
     'products'                      => 'المنتجات',
     'product'                       => 'المنتج',
+    'products_list'                 => 'قائمة المنتجات',
+    'show_products'                 => 'عرض المنتجات',
+    'add_product'                   => 'إضافة منتج',
     'description'                   => 'الوصف',
     'category'                      => 'القسم',
     'price'                         => 'السعر',
@@ -68,9 +71,15 @@ return [
     'total'                         => 'الاجمالى',
     'purchase_price'                => 'سعر الشراء',
     'sale_price'                    => 'سعر البيع',
-    'profit_percent'                => 'الربح',
+    'profit'                        => 'الربح',
     'stock'                         => 'المخزن',
     'show_products'                 => 'عرض المنتجات',
+    'stock'                         => 'المخزن',
+    'no_quantity'                   => 'لا توجد اى كمية',
+    'reports'                       => 'التقارير',
+    'sales'                         => 'المبيعات',
+    'sales_quantity'                => 'الكمية المباعة',
+    'date'                          => 'التاريخ',
 
     'ar' => [
         'name'                     => 'الاسم باللغة العربية',

@@ -77,6 +77,12 @@
     {{--<!-- iCheck -->--}}
     <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/icheck/all.css') }}">
 
+    {{--<!-- datatables -->--}}
+    <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/datatables/dataTables.bootstrap.css') }}">
+
+    {{--<!-- select2 -->--}}
+    <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/select2/select2.min.css') }}">
+
     {{--<!-- sweetalert -->--}}
     <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/sweetalert/sweetalert.css') }}">
 
@@ -333,6 +339,15 @@
     <script src="{{ asset('dashboard_files/js/custom/image_preview.js') }}"></script>
     <script src="{{ asset('dashboard_files/js/custom/order.js') }}"></script>
 
+    {{-- Datatables --}}
+    @if (app()->getLocale() == 'ar')
+        <script src="{{ asset('dashboard_files/plugins/datatables/jquery.dataTables-ar.js') }}"></script>
+    @else
+        <script src="{{ asset('dashboard_files/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    @endif
+        <script src="{{ asset('dashboard_files/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+    {{-- select2 --}}
+    <script src="{{ asset('dashboard_files/plugins/select2/select2.full.min.js') }}"></script>
     {{-- sweetalert --}}
     <script src="{{ asset('dashboard_files/plugins/sweetalert/sweetalert.min.js') }}"></script>
     <script>
@@ -369,9 +384,11 @@
                 });
             });// end of sweetalert
 
-
             // Ckeditor config
             CKEDITOR.config.language="{{ app()->getLocale() }}";
+
+            //Initialize Select2 Elements
+            $(".select2").select2();
         });//end of ready
     </script>
 
