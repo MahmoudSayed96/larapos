@@ -18,30 +18,12 @@
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title" style="margin-bottom:20px">@lang('site.products')</h3>
-                    {{-- Search form --}}
-                    <form action="{{ route('dashboard.products.list') }}" method="get">
-                        <div class="row">
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" name="search" value="{{ request()->search }}" placeholder="@lang('site.search')">
-                                </div>
-                                <div class="col-md-4">
-                                    {{-- Search by category --}}
-                                    <div class="form-group">
-                                        <select class="form-control" id="search_by" name="category_id">
-                                            <option value="">@lang('site.all_categories')</option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}" {{ $category->id==request()->category_id ? 'selected':''}}>{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>{{-- ./form group --}}
-                                </div> {{-- ./end col --}}
-                                <div class="col-md-4">
-                                    <button type="submit" class="btn btn-info">
-                                        <i class="fa fa-search"></i> @lang('site.search')
-                                    </button>
-                                </div>
-                            </div>
-                    </form><!-- ./search form -->
+
+                    @include('dashboard.includes._search',[
+                        'route'=>'dashboard.products.list',
+                        'permission'=>'create_products',
+                        'add_btn' => false
+                        ])
 
                 </div><!-- ./box-header -->
                 <div class="box-body">
@@ -53,7 +35,7 @@
                                         <div class="panel panel-default">
                                             <div class="panel-body">
                                                 <div class="image-box" style="max-height: 300px">
-                                                    <img src="{{ $product->image_path }}" class="img-responsive" alt="{{ $product->name }}">
+                                                    <img src="{{ $product->image_path }}" style="width:100%;min-height:250px;max-height:250px;" class="img-responsive" alt="{{ $product->name }}">
                                                 </div>
                                                 <hr>
                                                 <ul class="list-group">
@@ -88,13 +70,3 @@
     </div><!-- ./content wrapper -->
 
 @endsection
-@push('scripts')
-    <script>
-        $(document).ready(function(){
-            $('#search_by').on('change',function(){
-                var categoryId=$(this).val();
-                $(this).closest('form').submit();
-            });
-        });
-    </script>
-@endpush

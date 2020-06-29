@@ -36,13 +36,11 @@ class ClientsController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3|max:20',
-            'phone' => 'required|min:1|array',
-            'phone' => 'string',
+            'phone' => 'max:20',
             'address' => 'required',
         ]);
 
         $request_data = $request->all();
-        // $request_data['phone'] = array_filter($request->phone);
         Client::create($request_data);
         session()->flash('success', \Lang::get('site.added_successfully'));
         return redirect()->route('dashboard.clients.index');
@@ -74,8 +72,7 @@ class ClientsController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3|max:20',
-            'phone' => 'required|min:1|array',
-            'phone' => 'string',
+            'phone' => 'max:20',
             'address' => 'required',
         ]);
 

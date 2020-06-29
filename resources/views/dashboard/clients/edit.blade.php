@@ -39,12 +39,10 @@
                         <input type="text" class="form-control" id="name" name="name" value="{{ $client->name }}" required>
                     </div>
                     {{-- Phone --}}
-                    @for ($i = 0; $i < 2; $i++)
                     <div class="form-group">
-                            <label>@lang('site.phone')</label>
-                            <input type="text" name="phone[]" class="form-control" value="{{ $client->phone[$i] ? $client->phone[$i] :'' }}">
-                        </div>
-                    @endfor
+                        <label>@lang('site.phone')</label>
+                        <input type="text" name="phone" class="form-control" value="{{ $client->phone ? $client->phone :'' }}">
+                    </div>
 
                     {{-- Address --}}
                     <div class="form-group">

@@ -75,11 +75,16 @@ return [
     'stock'                         => 'Stock',
     'show_products'                 => 'Show Products',
     'stock'                         => 'Stock',
+    'current_stock'                 => 'Current quantity in stock',
     'no_quantity'                   => 'No quantity exists',
+    'new_quantity'                  => 'New Quantity',
     'reports'                       => 'Reports',
     'sales'                         => 'Sales',
     'sales_quantity'                => 'Sales Quantity',
     'date'                          => 'Date',
+    'bill'                          => 'Bill',
+    'add_to_bill'                   => 'Add to Bill',
+    'copyright'                     => 'All rights reserved.',
 
     'ar' => [
         'name'                     => 'Arabic Name',

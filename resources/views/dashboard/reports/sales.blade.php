@@ -15,7 +15,31 @@
         <section class="content">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title" style="margin-bottom:20px">@lang('site.sales')</h3>
+                    <h3 class="box-title" style="margin-bottom:20px">@lang('site.products')</h3>
+                    {{-- Search form --}}
+                    <form action="{{ route('dashboard.reports.sales') }}" method="get">
+                        <div class="row">
+                                <div class="col-md-4 hidden">
+                                    <input type="text" class="form-control" name="search" value="{{ request()->search }}" placeholder="@lang('site.search')">
+                                </div>
+                                <div class="col-md-4">
+                                    {{-- Search by category --}}
+                                    <div class="form-group">
+                                        <select class="form-control select2" id="search_by" name="category_id">
+                                            <option value="">@lang('site.all_categories')</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}" {{ $category->id==request()->category_id ? 'selected':''}}>{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>{{-- ./form group --}}
+                                </div> {{-- ./end col --}}
+                                <div class="col-md-4 hidden">
+                                    <button type="submit" class="btn btn-info">
+                                        <i class="fa fa-search"></i> @lang('site.search')
+                                    </button>
+                                </div>
+                            </div>
+                    </form><!-- ./search form -->
 
                 </div><!-- ./box-header -->
                 <div class="box-body">
@@ -36,16 +60,22 @@
                                         </thead>
                                         <tbody>
                                             @if (isset($orders) && $orders->count() > 0)
+                                                @php
+                                                    $total_profit = 0;
+                                                @endphp
                                                 @foreach ($orders as $order)
                                                     @foreach ($order->products as $index => $product)
                                                         <tr>
                                                             <td>{{ $index+1 }}</td>
-                                                            <td>Date</td>
+                                                            <td>{{ $order->created_at }}</td>
                                                             <td>{{ $product->name }}</td>
                                                             <td>{{ $product->pivot->quantity }}</td>
                                                             <td>{{ number_format($product->sale_price * $product->pivot->quantity,2) }}</td>
                                                             <td>{{ number_format($product->profit,2) }}</td>
                                                         </tr>
+                                                        @php
+                                                            $total_profit += $product->profit;
+                                                        @endphp
                                                     @endforeach
                                                 @endforeach
                                             @else
@@ -53,6 +83,13 @@
                                             @endif
                                         </tbody>
                                     </table>
+                                    @if (isset($orders) && $orders->count() > 0)
+                                        <br>
+                                        <div class="alert alert-success">
+                                            <strong>@lang('site.total')</strong>
+                                            <span>{{number_format($total_profit,2)}}</span>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -67,6 +104,11 @@
     <script>
         // Datatables
         $(function () {
+            // Search category.
+            $('#search_by').on('change',function(){
+                var categoryId=$(this).val();
+                $(this).closest('form').submit();
+            });
             $("#sales").DataTable();
         });
     </script>
