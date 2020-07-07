@@ -71,10 +71,10 @@
                                                             <td>{{ $product->name }}</td>
                                                             <td>{{ $product->pivot->quantity }}</td>
                                                             <td>{{ number_format($product->sale_price * $product->pivot->quantity,2) }}</td>
-                                                            <td>{{ number_format($product->profit,2) }}</td>
+                                                            <td>{{ number_format($product->profit  * $product->pivot->quantity,2) }}</td>
                                                         </tr>
                                                         @php
-                                                            $total_profit += $product->profit;
+                                                            $total_profit += ($product->profit  * $product->pivot->quantity);
                                                         @endphp
                                                     @endforeach
                                                 @endforeach

@@ -60,11 +60,17 @@ class OrdersController extends Controller
         return redirect()->route('dashboard.orders.index');
     } //end of store
 
-    public function edit(Client $client, Order $order)
+    public function edit(Request $request, Client $client, Order $order)
     {
         $categories = Category::all();
+        // Search operation
+        $products = Product::when($request->search, function ($query) use ($request) {
+            return $query->whereTranslationLike('name', '%' . $request->search . '%');
+        })->when($request->category_id, function ($query) use ($request) {
+            return $query->where('category_id', $request->category_id);
+        })->latest()->paginate(10);
         $orders = $client->orders()->paginate(10);
-        return view('dashboard.clients.orders.edit', \compact('categories', 'orders', 'client', 'order'));
+        return view('dashboard.clients.orders.edit', \compact('categories', 'orders', 'client', 'order','products'));
     } //end of edit
 
     public function update(Request $request, Client $client, Order $order)

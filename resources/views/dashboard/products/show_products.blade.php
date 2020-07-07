@@ -21,6 +21,7 @@
 
                     @include('dashboard.includes._search',[
                         'route'=>'dashboard.products.list',
+                        'route_params' => [],
                         'permission'=>'create_products',
                         'add_btn' => false
                         ])

@@ -2,6 +2,9 @@
 
 // Dashboard routes
 
+use Illuminate\Support\Facades\Route;
+use Milon\Barcode\DNS1D;
+
 Route::group(
     ['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']],
     function () {

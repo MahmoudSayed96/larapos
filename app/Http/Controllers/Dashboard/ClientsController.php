@@ -88,6 +88,6 @@ class ClientsController extends Controller
         $client->delete();
         session()->flash('success', \Lang::get('site.deleted_successfully'));
 
-        return \redirect()->route('dashboard.products.index');
+        return \redirect()->route('dashboard.clients.index');
     } //end of destroy
 }

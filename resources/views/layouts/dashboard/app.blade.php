@@ -29,69 +29,69 @@
             <link rel="stylesheet" href="{{ asset('dashboard_files/css/AdminLTE.min.css') }}">
         @endif
 
-    <style>
-        .mr-2{
-            margin-right: 5px;
-        }
-
-        .loader {
-            border: 5px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 5px solid #367FA9;
-            width: 60px;
-            height: 60px;
-            -webkit-animation: spin 1s linear infinite; /* Safari */
-            animation: spin 1s linear infinite;
-        }
-
-        /* Safari */
-        @-webkit-keyframes spin {
-            0% {
-                -webkit-transform: rotate(0deg);
+        <style>
+            .mr-2{
+                margin-right: 5px;
             }
-            100% {
-                -webkit-transform: rotate(360deg);
+
+            .loader {
+                border: 5px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 5px solid #367FA9;
+                width: 60px;
+                height: 60px;
+                -webkit-animation: spin 1s linear infinite; /* Safari */
+                animation: spin 1s linear infinite;
             }
-        }
 
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
+            /* Safari */
+            @-webkit-keyframes spin {
+                0% {
+                    -webkit-transform: rotate(0deg);
+                }
+                100% {
+                    -webkit-transform: rotate(360deg);
+                }
             }
-            100% {
-                transform: rotate(360deg);
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
             }
-        }
 
-    </style>
-    {{--<!-- jQuery 3 -->--}}
-    <script src="{{ asset('dashboard_files/js/jquery.min.js') }}"></script>
+        </style>
+        {{--<!-- jQuery 3 -->--}}
+        <script src="{{ asset('dashboard_files/js/jquery.min.js') }}"></script>
 
-    {{--noty--}}
-    <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/noty/noty.css') }}">
-    <script src="{{ asset('dashboard_files/plugins/noty/noty.min.js') }}"></script>
+        {{--noty--}}
+        <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/noty/noty.css') }}">
+        <script src="{{ asset('dashboard_files/plugins/noty/noty.min.js') }}"></script>
 
-    {{--morris--}}
-    <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/morris/morris.css') }}">
+        {{--morris--}}
+        <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/morris/morris.css') }}">
 
-    {{--<!-- iCheck -->--}}
-    <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/icheck/all.css') }}">
+        {{--<!-- iCheck -->--}}
+        <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/icheck/all.css') }}">
 
-    {{--<!-- datatables -->--}}
-    <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/datatables/dataTables.bootstrap.css') }}">
+        {{--<!-- datatables -->--}}
+        <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/datatables/dataTables.bootstrap.css') }}">
 
-    {{--<!-- select2 -->--}}
-    <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/select2/select2.min.css') }}">
+        {{--<!-- select2 -->--}}
+        <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/select2/select2.min.css') }}">
 
-    {{--<!-- sweetalert -->--}}
-    <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/sweetalert/sweetalert.css') }}">
+        {{--<!-- sweetalert -->--}}
+        <link rel="stylesheet" href="{{ asset('dashboard_files/plugins/sweetalert/sweetalert.css') }}">
 
-    {{--html in  ie--}}
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        {{--html in  ie--}}
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
-    {{-- Styles --}}
-    @stack('styles')
+        {{-- Styles --}}
+        @stack('styles')
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
 

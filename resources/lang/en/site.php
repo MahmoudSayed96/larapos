@@ -83,6 +83,7 @@ return [
     'sales_quantity'                => 'Sales Quantity',
     'date'                          => 'Date',
     'bill'                          => 'Bill',
+    'bill_no'                       => 'Bill No',
     'add_to_bill'                   => 'Add to Bill',
     'copyright'                     => 'All rights reserved.',
 

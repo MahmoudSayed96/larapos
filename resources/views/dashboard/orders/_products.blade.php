@@ -1,6 +1,27 @@
-    <div class="box">
+@push('styles')
+    <style>
+        @media only print {
+            #print-area table{
+                width: 90%;
+                margin: 10px auto;
+                text-align:center;
+                border:1px solid #ddd;
+            }
+        }
+    </style>
+@endpush
+<div class="box">
     <div id="print-area">
         @if ($products->count()>0)
+            <!-- Client-info -->
+            <div class="client-info">
+                <ul class="list-unstyled">
+                    <li>@lang('site.date'): <strong dir="ltr">{{$order->created_at->toDateTimeString()}}</strong></li>
+                    <li>@lang('site.client_name'): <strong>{{$order->client->name}}</strong></li>
+                    <li>@lang('site.bill_no'): <strong>{{$order->id}}</strong></li>
+                </ul>
+            </div>
+            <!-- ./Client-info -->
             <table class="table table-hover text-center">
                 <thead>
                     <tr>

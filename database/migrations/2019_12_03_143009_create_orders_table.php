@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('client_id')->unsigned();
             $table->double('total_price', 8, 2)->nullable();
+            $table->boolean('is_printed')->default(false);
             $table->timestamps();
 
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
