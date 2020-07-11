@@ -39,7 +39,7 @@
                                     <th>@lang('site.image')</th>
                                     <th>@lang('site.purchase_price')</th>
                                     <th>@lang('site.sale_price')</th>
-                                    <th>@lang('site.profit')</th>
+                                    <th>@lang('site.collect_price')</th>
                                     <th>@lang('site.stock')</th>
                                     <th>@lang('site.actions')</th>
                                 </tr>
@@ -56,7 +56,7 @@
                                         </td>
                                         <td>{{ $product->purchase_price }}</td>
                                         <td>{{ $product->sale_price }}</td>
-                                        <td>{{ $product->profit }}</td>
+                                        <td>{{ $product->collect_price }}</td>
                                         <td>{{ $product->stock }}</td>
                                         <td>
                                             @if (auth()->user()->hasPermission('update_products'))

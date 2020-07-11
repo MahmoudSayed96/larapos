@@ -31,7 +31,8 @@
                                                 <th>#</th>
                                                 <th class="sorting_asc" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-sort="ascending" aria-label="@lang('site.product'): activate to sort column descending" style="width: 176px;">@lang('site.product')</th>
                                                 <th class="sorting" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-label="@lang('site.category'): activate to sort column ascending" style="width: 223px;">@lang('site.category')</th>
-                                                <th class="sorting" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-label="@lang('site.price'): activate to sort column ascending" style="width: 205px;">@lang('site.price')</th>
+                                                <th class="sorting" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-label="@lang('site.normal_price'): activate to sort column ascending" style="width: 205px;">@lang('site.normal_price')</th>
+                                                <th class="sorting" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-label="@lang('site.collect_price'): activate to sort column ascending" style="width: 205px;">@lang('site.collect_price')</th>
                                                 <th class="sorting" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-label="@lang('site.quantity'): activate to sort column ascending" style="width: 152px;">@lang('site.quantity')</th>
                                             </tr>
                                         </thead>
@@ -43,6 +44,7 @@
                                                         <td>{{ $product->name }}</td>
                                                         <td>{{ $product->category->name }}</td>
                                                         <td>{{ $product->sale_price }}</td>
+                                                        <td>{{ $product->collect_price }}</td>
                                                         <td>
                                                             @if ($product->stock == 0)
                                                                 <strong>@lang('site.no_quantity')</strong>

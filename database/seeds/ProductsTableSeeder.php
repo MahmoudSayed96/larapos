@@ -25,6 +25,7 @@ class ProductsTableSeeder extends Seeder
                 'purchase_price' => $prices[$index],
                 'sale_price' =>  $sales[$index],
                 'stock' => $stock[$index],
+                'collect_price' => 50,
             ]);
         } //end of foreach
     } // end of run

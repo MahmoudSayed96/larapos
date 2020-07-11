@@ -115,6 +115,14 @@
                                                                 <li class="list-group-item">
                                                                     <strong>@lang('site.price'): </strong> <span style="">{{ $product->sale_price }}</span>
                                                                 </li>
+                                                                <li class="list-group-item">
+                                                                    <strong>@lang('site.price'): <span class="selected-price"></span></strong>
+                                                                    <select class="select-price form-control">
+                                                                        <option>@lang('site.select_price')</option>
+                                                                        <option value="{{ $product->sale_price }}" data-product="{{ $product->id }}" data-sale="normal" data-url="{{ route('dashboard.products.sale_type',$product->id) }}">@lang('site.sale_price')</option>
+                                                                        <option value="{{ $product->collect_price }}" data-product="{{ $product->id }}" data-sale="collect" data-url="{{ route('dashboard.products.sale_type',$product->id) }}">@lang('site.collect_price')</option>
+                                                                    </select>
+                                                                </li>
                                                             </ul>
                                                             @if($product->stock > 0)
                                                             <a href=""

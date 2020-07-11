@@ -35,6 +35,7 @@ class OrdersController extends Controller
 
     public function store(Request $request, Client $client)
     {
+        // dd($request);
         $request->validate([
             'products' => 'required|array',
         ]);
@@ -47,7 +48,8 @@ class OrdersController extends Controller
             $product = Product::findOrFail($id);
             $quantities = $quantity['quantity'];
             // Calculate products total price
-            $total_price += $product->sale_price *  $quantities;
+            // $total_price += $product->sale_price *  $quantities;
+            $total_price += $product->getPriceByQuantity($quantities);
             // add products and there quantities to order
             $order->products()->attach($id, ['quantity' =>  $quantities]);
             // update product stock

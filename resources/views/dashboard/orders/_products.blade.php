@@ -35,7 +35,7 @@
                         <tr>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->pivot->quantity }}</td>
-                            <td>{{ number_format($product->sale_price * $product->pivot->quantity,2) }}</td>
+                            <td>{{ number_format($product->getPriceByQuantity($product->pivot->quantity),2) }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -49,8 +49,10 @@
     </div>
     {{-- Pagination --}}
     {{ $products->appends(request()->query())->links() }}
-    <button id="print-btn" class="btn btn-primary btn-block">
-        <i class="fa fa-print"></i> @lang('site.print')
-    </button>
+    @if ($order->is_printed == 0)
+        <button id="print-btn" class="btn btn-primary btn-block" data-order="{{ $order->id }}" data-url="{{ route('dashboard.orders.print',$order) }}">
+            <i class="fa fa-print"></i> @lang('site.print')
+        </button>
+    @endif
 </div>
 

@@ -73,6 +73,11 @@
                             <label for="sale_price">@lang('site.sale_price')</label>
                             <input type="number" step="0.01" name="sale_price" id="sale_price" value="{{ old('sale_price') }}" class="form-control" placeholder="0.0" required>
                         </div>
+                        {{-- Collect Price --}}
+                        <div class="form-group">
+                            <label for="collect_price">@lang('site.collect_price')</label>
+                            <input type="number" step="0.01" name="collect_price" id="collect_price" value="{{ old('collect_price') }}" class="form-control" placeholder="0.0" required>
+                        </div>
                         {{-- Stock --}}
                         <div class="form-group">
                             <label for="stock">@lang('site.stock')</label>

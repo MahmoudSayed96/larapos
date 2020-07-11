@@ -16,12 +16,14 @@ Route::group(
             // Products routes
             Route::resource('products', 'ProductsController');
             Route::get('/show-products','ProductsController@productsList')->name('products.list');
+            Route::post('/change-sale/{id}','ProductsController@saleType')->name('products.sale_type');
             // Clients routes
             Route::resource('clients', 'ClientsController')->except(['show']);
             Route::resource('clients.orders', 'Client\OrdersController');
             // Orders routes
             Route::resource('orders', 'OrdersController');
             Route::get('/orders/{order}/products', 'OrdersController@products')->name('orders.products');
+            Route::get('/orders/{order}/print', 'OrdersController@print')->name('orders.print');
             // Users routes
             Route::resource('users', 'UsersController')->except(['show']);
             // Stock routes

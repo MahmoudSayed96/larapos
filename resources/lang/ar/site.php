@@ -42,7 +42,7 @@ return [
     'status'                        => 'الحالة',
     'previous_orders'               => 'الطلبات السابقة',
 
-    'users'                         => 'المشرفين',
+    'users'                         => 'المستخدمين',
     'first_name'                    => 'الاسم الاول',
     'last_name'                     => 'الاسم الاخير',
     'email'                         => 'البريد الالكترونى',
@@ -85,6 +85,15 @@ return [
     'bill'                          => 'الفاتورة',
     'bill_no'                       => 'رقم الفاتورة',
     'add_to_bill'                   => 'أضف الى الفاتورة',
+    'sale_type'                     => 'نوع السعر',
+    'collect_price'                 => 'سعر الجملة',
+    'normal_price'                  => 'سعر البيع بالقطعة',
+    'select_price'                  => 'اختر سعر البيع',
+    'total_sales'                   => 'اجمالى المبيعات',
+    'total_purchases'               => 'اجمالى المشتريات',
+    'total_profit'                  => 'اجمالى الربح',
+    'printed'                       => 'تم الطباعة',
+    'no_printed'                    => '-',
     'copyright'                     => 'كل الحقوق محفوظه',
 
     'ar' => [

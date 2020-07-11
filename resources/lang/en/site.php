@@ -85,6 +85,15 @@ return [
     'bill'                          => 'Bill',
     'bill_no'                       => 'Bill No',
     'add_to_bill'                   => 'Add to Bill',
+    'sale_type'                     => 'Type of sale',
+    'collect_price'                 => 'Collect Price',
+    'normal_price'                  => 'Sale price',
+    'select_price'                  => 'Select sale price',
+    'total_sales'                   => 'Total Of Sales',
+    'total_purchases'               => 'Total Of Purchases',
+    'total_profit'                  => 'Total Of Profits',
+    'printed'                       => 'Printed',
+    'no_printed'                    => '-',
     'copyright'                     => 'All rights reserved.',
 
     'ar' => [

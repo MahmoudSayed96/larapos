@@ -44,6 +44,40 @@
                 </div><!-- ./box-header -->
                 <div class="box-body">
                     <div class="box-body">
+                        @if (isset($stats))
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <!-- Sales -->
+                                    <div class="small-box bg-aqua">
+                                        <div class="inner">
+                                            <h3><i class="fa fa-money"></i>
+                                                {{number_format($stats['total_sales'],2)}}</h3>
+                                            <p>@lang('site.total_sales')</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <!-- Sales -->
+                                    <div class="small-box bg-red">
+                                        <div class="inner">
+                                            <h3><i class="fa fa-money"></i>
+                                                {{number_format($stats['total_purchases'],2)}}</h3>
+                                            <p>@lang('site.total_purchases')</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <!-- Sales -->
+                                    <div class="small-box bg-green">
+                                        <div class="inner">
+                                            <h3><i class="fa fa-money"></i>
+                                                {{number_format($stats['total_profit'],2)}}</h3>
+                                            <p>@lang('site.total_profit')</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         <div id="products_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -54,15 +88,13 @@
                                                 <th class="sorting_asc" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-sort="ascending" aria-label="@lang('site.date'): activate to sort column descending" style="width: 176px;">@lang('site.date')</th>
                                                 <th class="sorting" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-label="@lang('site.product'): activate to sort column ascending" style="width: 223px;">@lang('site.product')</th>
                                                 <th class="sorting" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-label="@lang('site.sales_quantity'): activate to sort column ascending" style="width: 152px;">@lang('site.sales_quantity')</th>
+                                                <th class="sorting" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-label="@lang('site.sale_type'): activate to sort column ascending" style="width: 152px;">@lang('site.sale_type')</th>
                                                 <th class="sorting" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-label="@lang('site.price'): activate to sort column ascending" style="width: 205px;">@lang('site.price')</th>
                                                 <th class="sorting" tabindex="0" aria-controls="products" rowspan="1" colspan="1" aria-label="@lang('site.profit'): activate to sort column ascending" style="width: 152px;">@lang('site.profit')</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @if (isset($orders) && $orders->count() > 0)
-                                                @php
-                                                    $total_profit = 0;
-                                                @endphp
                                                 @foreach ($orders as $order)
                                                     @foreach ($order->products as $index => $product)
                                                         <tr>
@@ -70,12 +102,10 @@
                                                             <td>{{ $order->created_at }}</td>
                                                             <td>{{ $product->name }}</td>
                                                             <td>{{ $product->pivot->quantity }}</td>
-                                                            <td>{{ number_format($product->sale_price * $product->pivot->quantity,2) }}</td>
+                                                            <td>{{ $product->saleType() }}</td>
+                                                            <td>{{ number_format($product->getPriceByQuantity($product->pivot->quantity),2) }}</td>
                                                             <td>{{ number_format($product->profit  * $product->pivot->quantity,2) }}</td>
                                                         </tr>
-                                                        @php
-                                                            $total_profit += ($product->profit  * $product->pivot->quantity);
-                                                        @endphp
                                                     @endforeach
                                                 @endforeach
                                             @else
@@ -83,13 +113,6 @@
                                             @endif
                                         </tbody>
                                     </table>
-                                    @if (isset($orders) && $orders->count() > 0)
-                                        <br>
-                                        <div class="alert alert-success">
-                                            <strong>@lang('site.total')</strong>
-                                            <span>{{number_format($total_profit,2)}}</span>
-                                        </div>
-                                    @endif
                                 </div>
                             </div>
                         </div>

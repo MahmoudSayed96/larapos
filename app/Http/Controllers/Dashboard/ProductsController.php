@@ -54,6 +54,7 @@ class ProductsController extends Controller
             'image' => 'image',
             'purchase_price' => 'required|number',
             'sale_price' => 'required|number',
+            'collect_price' => 'required|number',
             'stock' => 'required|number',
         ];
 
@@ -98,6 +99,7 @@ class ProductsController extends Controller
             'image' => 'image',
             'purchase_price' => 'required|number',
             'sale_price' => 'required|number',
+            'collect_price' => 'required|number',
             'stock' => 'required|number',
             'current_stock' => 'number',
         ];
@@ -151,5 +153,14 @@ class ProductsController extends Controller
             return $query->where('category_id', $request->category_id);
         })->latest()->paginate(10);
         return view('dashboard.products.show_products',compact('categories','products'));
+    }
+
+    // Change sales type.
+    public function saleType(Request $request,int $id) {
+        $product = Product::findOrFail($id);
+        $product->update([
+            'sale_type' => $request->sale_type
+        ]);
+        return response('true',200);
     }
 }
