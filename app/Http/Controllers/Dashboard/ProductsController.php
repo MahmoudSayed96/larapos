@@ -54,6 +54,7 @@ class ProductsController extends Controller
             'image' => 'image',
             'purchase_price' => 'required|number',
             'sale_price' => 'required|number',
+            'collect_price' => 'required|number',
             'stock' => 'required|number',
         ];
 
@@ -84,6 +85,7 @@ class ProductsController extends Controller
 
     public function update(Request $request, Product $product)
     {
+
         $roles = [
             'category_id' => 'required',
         ];
@@ -97,10 +99,18 @@ class ProductsController extends Controller
             'image' => 'image',
             'purchase_price' => 'required|number',
             'sale_price' => 'required|number',
+            'collect_price' => 'required|number',
             'stock' => 'required|number',
+            'current_stock' => 'number',
         ];
 
         $request_data = $request->all();
+        // Check stock input has a value
+        if(isset($request->stock)){
+            $request_data['stock'] = $request->stock + $request->current_stock;
+        }else{
+            $request_data['stock'] = $request->current_stock;
+        }
         if ($request->image) {
             if ($product->image != 'default.png') {
                 // delete old image
@@ -133,8 +143,24 @@ class ProductsController extends Controller
         return \redirect()->route('dashboard.products.index');
     } // end of destroy
 
-    public function searchBy()
-    {
-        return 'test';
+
+    public function productsList(Request $request){
+        $categories = Category::all();
+        // Search operation
+        $products = Product::when($request->search, function ($query) use ($request) {
+            return $query->whereTranslationLike('name', '%' . $request->search . '%');
+        })->when($request->category_id, function ($query) use ($request) {
+            return $query->where('category_id', $request->category_id);
+        })->latest()->paginate(10);
+        return view('dashboard.products.show_products',compact('categories','products'));
+    }
+
+    // Change sales type.
+    public function saleType(Request $request,int $id) {
+        $product = Product::findOrFail($id);
+        $product->update([
+            'sale_type' => $request->sale_type
+        ]);
+        return response('true',200);
     }
 }

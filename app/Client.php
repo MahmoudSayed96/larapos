@@ -8,10 +8,6 @@ class Client extends Model
 {
     protected $guarded = [];
     protected $fillable = ['name', 'phone', 'address'];
-    protected $casts = [
-        'phone' => 'array',
-    ];
-
 
     public function getNameAttribute($value)
     {

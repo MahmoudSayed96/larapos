@@ -2,7 +2,6 @@
 @section('content')
 
     <div class="content-wrapper">
-
         <section class="content-header">
             <h2>
                 @lang('site.add_order')
@@ -26,149 +25,107 @@
                 </div><!-- /.box-header -->
 
                 <div class="box-body">
+                        <div class="col-sm-12 col-md-12" style="margin-bottom: 10px;">
+                            {{-- Create Order --}}
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">@lang('site.orders')</h3>
+                                </div>
+                                <h2>@lang('site.bill')</h2>
+                                <!-- /.box-header -->
+                                <form action="{{ route('dashboard.clients.orders.store',$client->id) }}" method="post">
+                                    @csrf
+                                    @method('post')
+                                    @include('partials._errors')
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>@lang('site.product')</th>
+                                                <th>@lang('site.quantity')</th>
+                                                <th>@lang('site.price')</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="order-list"></tbody>
+                                    </table><!-- ./tabel-->
+                                    <h3>
+                                        @lang('site.total'):<stron class="total-price">0</stron>
+                                    </h3>
+                                    <button type="submit" id="add_order_form_btn" class="btn btn-primary btn-block disabled">
+                                        <i class="fa fa-plus fa-lg"></i> @lang('site.add_order')
+                                    </button>
+                                </form><!-- ./form -->
+                            </div><!-- /.box -->
+                        </div>
                     {{-- Catgories --}}
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-12">
                         <div class="box box-info">
                             <div class="box-header with-border">
-                                <h3 class="box-title">@lang('site.categories')</h3>
+                                <h3 class="box-title">@lang('site.products')</h3>
+                                @include('dashboard.includes._search',[
+                                    'route'=>'dashboard.clients.orders.create',
+                                    'route_params' => [$client],
+                                    'permission'=>'create_orders',
+                                    'add_btn' => false
+                                    ])
                             </div>
                             <!-- /.box-header -->
                             <div class="box-body">
-                                @if ($categories->count() > 0)
-                                    @foreach ($categories as $category)
-                                        <div class="panel-group">
-                                            <div class="panel panel-info">
-                                                <div class="panel-heading">
-                                                    <h2 class="panel-title">
-                                                        <a data-toggle="collapse" href="#{{ str_replace(' ','_',$category->name) }}">{{ $category->name }}</a>
-                                                    </h2><!-- /.panel-title -->
-                                                </div><!-- /.panel-heading -->
-
-                                                <div id="{{ str_replace(' ','_',$category->name) }}" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        @if ($category->products()->count() > 0)
-                                                        <table class="table table-hover table-bordered">
-                                                                <tr>
-                                                                    <th>@lang('site.name')</th>
-                                                                    <th>@lang('site.stock')</th>
-                                                                    <th>@lang('site.price')</th>
-                                                                    <th>@lang('site.add')</th>
-                                                                </tr>
-                                                                @foreach ($category->products as $product)
-                                                                    <tr>
-                                                                        <td>{{ $product->name }}</td>
-                                                                        <td>{{ $product->stock }}</td>
-                                                                        <td>{{ number_format($product->sale_price ,2) }}</td>
-                                                                        <td>
-                                                                            <a href=""
-                                                                                id="product_{{ $product->id }}"
-                                                                                data-id="{{ $product->id }}"
-                                                                                data-name="{{ $product->name }}"
-                                                                                data-price="{{ $product->sale_price }}"
-                                                                                data-stock="{{ $product->stock }}"
-                                                                                class="btn btn-success btn-sm add-product-btn"
-                                                                            >
-                                                                                <i class="fa fa-plus"></i>
-                                                                            </a>
-                                                                        </td>
-                                                                    </tr>
-                                                                @endforeach
-                                                            </table>
-                                                        @else
-                                                            <h2>@lang('site.no_data_found')</h2>
-                                                        @endif
+                                @if ($products->count() > 0)
+                                    @foreach ($products->chunk(4) as $productsArray)
+                                        <div class="row">
+                                            @foreach ($productsArray as $product)
+                                                <div class="col-xs-12 col-sm-6 col-md-3">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-body">
+                                                            <div class="image-box" style="max-height: 300px">
+                                                                <img src="{{ $product->image_path }}" style="min-height:300px;width:100%" class="img-responsive" alt="{{ $product->name }}">
+                                                            </div>
+                                                            <hr>
+                                                            <ul class="list-group">
+                                                                <li class="list-group-item">
+                                                                    <strong>@lang('site.category'): </strong> <span style="">{{ $product->category->name }}</span>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                    <strong>@lang('site.product'): </strong> <span style="">{{ $product->name }}</span>
+                                                                </li>
+                                                                <li class="list-group-item">
+                                                                    <strong>@lang('site.price'): <span class="selected-price"></span></strong>
+                                                                    <select class="select-price form-control">
+                                                                        <option>@lang('site.select_price')</option>
+                                                                        <option value="{{ $product->sale_price }}" data-product="{{ $product->id }}" data-sale="normal" data-url="{{ route('dashboard.products.sale_type',$product->id) }}">@lang('site.sale_price')</option>
+                                                                        <option value="{{ $product->collect_price }}" data-product="{{ $product->id }}" data-sale="collect" data-url="{{ route('dashboard.products.sale_type',$product->id) }}">@lang('site.collect_price')</option>
+                                                                    </select>
+                                                                </li>
+                                                            </ul>
+                                                            @if ($product->stock > 0)
+                                                                    <a href=""
+                                                                    id="product_{{ $product->id }}"
+                                                                    data-id="{{ $product->id }}"
+                                                                    data-name="{{ $product->name }}"
+                                                                    data-price="{{ $product->sale_price }}"
+                                                                    data-stock="{{ $product->stock }}"
+                                                                    class="btn btn-success btn-block add-product-btn"
+                                                                >
+                                                                    <i class="fa fa-plus"></i> @lang('site.add_to_bill')
+                                                                </a>
+                                                                @else
+                                                                    <button class="btn btn-danger btn-block">@lang('site.no_quantity')</button>
+                                                            @endif
+                                                        </div>
                                                     </div>
-                                                </div><!-- /.penal-collapse -->
-                                            </div><!-- /.panel-info -->
-
-                                        </div><!-- /.panel-group -->
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     @endforeach
+                                    <div class="text-center">
+                                        {{-- Pagination --}}
+                                        {{ $products->appends(request()->query())->links() }}
+                                    </div>
                                 @else
-                                    <h2>@lang('site.no_data_found')</h2>
+                                    <h2 class="text-center">@lang('site.no_data_found')</h2>
                                 @endif
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        {{-- Create Order --}}
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">@lang('site.orders')</h3>
-                            </div>
-                            <!-- /.box-header -->
-                            <form action="{{ route('dashboard.clients.orders.store',$client->id) }}" method="post">
-                                @csrf
-                                @method('post')
-                                @include('partials._errors')
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>@lang('site.product')</th>
-                                            <th>@lang('site.quantity')</th>
-                                            <th>@lang('site.price')</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="order-list"></tbody>
-                                </table><!-- ./tabel-->
-                                <h3>
-                                    @lang('site.total'):<stron class="total-price">0</stron>
-                                </h3>
-                                <button type="submit" id="add_order_form_btn" class="btn btn-primary btn-block disabled">
-                                    <i class="fa fa-plus fa-lg"></i> @lang('site.add_order')
-                                </button>
-                            </form><!-- ./form -->
-                        </div><!-- /.box -->
-                        {{-- Previous orers --}}
-                        <div class="box box-primary">
-                            @if ($client->orders()->count() > 0)
-                            <div class="box box-info">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">
-                                        @lang('site.previous_orders')
-                                        <small class="badge">{{ $orders->total() }}</small>
-                                    </h3>
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body">
-                                        @foreach ($orders as $order)
-                                            <div class="panel-group">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">
-                                                        <h2 class="panel-title">
-                                                            <a data-toggle="collapse" href="#{{ $order->created_at->format('d-m-Y-s') }}">{{ $order->created_at->toFormattedDateString() }}</a>
-                                                        </h2><!-- /.panel-title -->
-                                                    </div><!-- /.panel-heading -->
-
-                                                    <div id="{{ $order->created_at->format('d-m-Y-s') }}" class="panel-collapse collapse">
-                                                        <div class="panel-body">
-                                                            @if ($order->products()->count() > 0)
-                                                                <table class="table">
-                                                                    <tr>
-                                                                        <th>@lang('site.product')</th>
-                                                                        <th>@lang('site.quantity')</th>
-                                                                    </tr>
-                                                                    @foreach ($order->products as $product)
-                                                                        <tr>
-                                                                            <td>{{ $product->name }}</td>
-                                                                            <td>{{ $product->pivot->quantity }}</td>
-                                                                        </tr>
-                                                                    @endforeach
-                                                                </table>
-                                                            @else
-                                                                <h2>@lang('site.no_data_found')</h2>
-                                                            @endif
-                                                        </div>
-                                                    </div><!-- /.penal-collapse -->
-                                                </div><!-- /.panel-info -->
-
-                                            </div><!-- /.panel-group -->
-                                        @endforeach
-                                    @else
-                                        <h2>@lang('site.no_data_found')</h2>
-                                    @endif
-                                </div>
-                            </div>
-                        </div><!-- ./privous orders-->
                     </div>
                 </div><!-- ./box-body -->
             </div><!-- ./box -->
@@ -177,3 +134,12 @@
     </div><!-- ./content wrapper -->
 
 @endsection
+
+@push('scripts')
+    <script>
+        // Datatables
+        $(function () {
+            $(".products-table").DataTable();
+        });
+    </script>
+@endpush

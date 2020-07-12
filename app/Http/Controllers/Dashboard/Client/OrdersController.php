@@ -17,15 +17,25 @@ class OrdersController extends Controller
         $this->middleware('permission:update_orders')->only('edit');
     }
 
-    public function create(Client $client)
+    public function create(Request $request, Client $client)
     {
-        $categories = Category::with('products')->get();
+        // $categories = Category::with(['products'=>function($q){
+        //     $q->where('stock','>',0);
+        // }])->paginate(10);
+        $categories = Category::all();
+        // Search operation
+        $products = Product::when($request->search, function ($query) use ($request) {
+            return $query->whereTranslationLike('name', '%' . $request->search . '%');
+        })->when($request->category_id, function ($query) use ($request) {
+            return $query->where('category_id', $request->category_id);
+        })->latest()->paginate(10);
         $orders = $client->orders()->paginate(10);
-        return view('dashboard.clients.orders.create', \compact('client', 'orders', 'categories'));
+        return view('dashboard.clients.orders.create', \compact('categories','client', 'orders','products'));
     } //end of create
 
     public function store(Request $request, Client $client)
     {
+        // dd($request);
         $request->validate([
             'products' => 'required|array',
         ]);
@@ -38,7 +48,8 @@ class OrdersController extends Controller
             $product = Product::findOrFail($id);
             $quantities = $quantity['quantity'];
             // Calculate products total price
-            $total_price += $product->sale_price *  $quantities;
+            // $total_price += $product->sale_price *  $quantities;
+            $total_price += $product->getPriceByQuantity($quantities);
             // add products and there quantities to order
             $order->products()->attach($id, ['quantity' =>  $quantities]);
             // update product stock
@@ -51,11 +62,17 @@ class OrdersController extends Controller
         return redirect()->route('dashboard.orders.index');
     } //end of store
 
-    public function edit(Client $client, Order $order)
+    public function edit(Request $request, Client $client, Order $order)
     {
         $categories = Category::all();
+        // Search operation
+        $products = Product::when($request->search, function ($query) use ($request) {
+            return $query->whereTranslationLike('name', '%' . $request->search . '%');
+        })->when($request->category_id, function ($query) use ($request) {
+            return $query->where('category_id', $request->category_id);
+        })->latest()->paginate(10);
         $orders = $client->orders()->paginate(10);
-        return view('dashboard.clients.orders.edit', \compact('categories', 'orders', 'client', 'order'));
+        return view('dashboard.clients.orders.edit', \compact('categories', 'orders', 'client', 'order','products'));
     } //end of edit
 
     public function update(Request $request, Client $client, Order $order)

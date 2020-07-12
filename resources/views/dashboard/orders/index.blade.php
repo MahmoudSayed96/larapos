@@ -89,15 +89,11 @@
                                             <td>{{ $order->client->name }}</td>
                                             <td>{{ number_format($order->total_price,2) }}</td>
                                             <td>
-                                                {{-- <button
-                                                    data-status=""
-                                                    data-url=""
-                                                    data-method="put"
-                                                    data-available-status=""
-                                                    class=""
-                                                >
-                                                    @lang('site.'.$order->status)
-                                                </button> --}}
+                                                @if ($order->is_printed == 1)
+                                                    @lang('site.printed')
+                                                @else
+                                                    @lang('site.no_printed')
+                                                @endif
                                             </td>
                                             <td>{{ $order->created_at->toFormattedDateString() }}</td>
                                             <td>
@@ -111,27 +107,29 @@
                                                 </button>
                                             </td>
                                             <td>
-                                                @if (auth()->user()->hasPermission('update_orders'))
-                                                    <a href="{{ route('dashboard.clients.orders.edit',[$order->client->id,$order->id]) }}" class="btn btn-primary btn-sm">
-                                                        <i class="fa fa-edit"></i> @lang('site.edit')
-                                                    </a>
-                                                @else
-                                                    <a href="javascript:;" class="btn btn-default btn-sm disabled">
-                                                        <i class="fa fa-pencil"></i> @lang('site.edit')
-                                                    </a>
-                                                @endif
-                                                @if (auth()->user()->hasPermission('delete_orders'))
-                                                    <form action="{{ route('dashboard.orders.destroy',$order->id) }}" style="display:inline-block" method="post">                                            @csrf
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button type="submit" class="btn btn-danger btn-sm delete">
+                                                @if ($order->is_printed == 0)
+                                                    @if (auth()->user()->hasPermission('update_orders'))
+                                                        <a href="{{ route('dashboard.clients.orders.edit',[$order->client->id,$order->id]) }}" class="btn btn-primary btn-sm">
+                                                            <i class="fa fa-edit"></i> @lang('site.edit')
+                                                        </a>
+                                                    @else
+                                                        <a href="javascript:;" class="btn btn-default btn-sm disabled">
+                                                            <i class="fa fa-pencil"></i> @lang('site.edit')
+                                                        </a>
+                                                    @endif
+                                                    @if (auth()->user()->hasPermission('delete_orders'))
+                                                        <form action="{{ route('dashboard.orders.destroy',$order->id) }}" style="display:inline-block" method="post">                                            @csrf
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="btn btn-danger btn-sm delete">
+                                                                <i class="fa fa-trash"></i> @lang('site.delete')
+                                                            </button>
+                                                        </form>
+                                                    @else
+                                                        <button type="submit" class="btn btn-danger btn-sm disabled">
                                                             <i class="fa fa-trash"></i> @lang('site.delete')
                                                         </button>
-                                                    </form>
-                                                @else
-                                                    <button type="submit" class="btn btn-danger btn-sm disabled">
-                                                        <i class="fa fa-trash"></i> @lang('site.delete')
-                                                    </button>
+                                                    @endif
                                                 @endif
                                             </td>
                                         </tr>
