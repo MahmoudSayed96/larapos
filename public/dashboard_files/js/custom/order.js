@@ -71,8 +71,43 @@ $(document).ready(function () {
     // print order products list
     $(document).on('click', '#print-btn', function (e) {
         e.preventDefault();
-        $('#print-area').printThis();
+        var _url = $(this).data('url');
+        $.ajax({
+            url: _url,
+            method: 'GET',
+            success: function (response) {
+                console.log(response);
+                if (response) {
+                    $('#print-area').printThis();
+                }
+            }
+        }); //end of ajax
     }); // end of print this
+
+    // Price selection.
+    $('.select-price').on('change', function () {
+        var price = $(this).children("option:selected").val();
+        var id = $(this).children("option:selected").data('product');
+        var saleType = $(this).children("option:selected").data('sale');
+        var product = 'product_' + id;
+        $(this).parent().find('.selected-price').text(price);
+        //Change data-price of product you chose.
+        $('#' + product).attr('data-price', price);
+        // Change sale type.
+        var saleUrl = $(this).children("option:selected").data('url');
+        console.log(saleUrl);
+        $.ajax({
+            url: saleUrl,
+            method: 'POST',
+            data: {
+                'sale_type': saleType,
+                '_token': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+                console.log(response);
+            }
+        }); //end of ajax
+    }); // end of price selection.
 
 }); //end of ready
 

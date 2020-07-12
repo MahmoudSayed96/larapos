@@ -8,6 +8,10 @@ return [
             'clients' => 'c,r,u,d',
             'orders' => 'c,r,u,d',
             'users' => 'c,r,u,d',
+            'reports' => 'c,r,u,d',
+            'stock' => 'c,r,u,d',
+            'pocket_money' => 'c,r,u,d',
+            'sales' => 'c,r,u,d',
         ],
         'admin' => []
     ],

@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <div class="form-group">
                             <label for="all_categories">@lang('site.category_id')</label>
-                            <select class="form-control" name="category_id">
+                            <select class="form-control select2" name="category_id">
                                 <option value="" disabled>@lang('site.all_categories')</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}" {{ $category->id==$product->category_id ? 'selected':''}}>{{ $category->name }}</option>
@@ -76,10 +76,20 @@
                             <label for="sale_price">@lang('site.sale_price')</label>
                             <input type="number" step="0.01" name="sale_price" id="sale_price" value="{{ $product->sale_price }}" class="form-control" placeholder="0.0" required>
                         </div>
+                        {{-- Collect Price --}}
+                        <div class="form-group">
+                            <label for="collect_price">@lang('site.collect_price')</label>
+                            <input type="number" step="0.01" name="collect_price" id="collect_price" value="{{ $product->collect_price }}" class="form-control" placeholder="0.0" required>
+                        </div>
                         {{-- Stock --}}
                         <div class="form-group">
-                            <label for="stock">@lang('site.stock')</label>
-                            <input type="number" name="stock" id="stock" value="{{ $product->stock }}" class="form-control"  required>
+                            <label for="stock">@lang('site.new_quantity')</label>
+                            <input type="number" name="stock" id="stock" value="0" class="form-control">
+                        </div>
+                        {{-- Current Stock --}}
+                        <div class="form-group">
+                            <label for="current_stock">@lang('site.current_stock')</label>
+                            <input type="number" name="current_stock" id="current_stock" value="{{ $product->stock }}" class="form-control" readonly>
                         </div>
 
                     <div class="form-group">

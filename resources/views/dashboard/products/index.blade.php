@@ -18,39 +18,13 @@
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title" style="margin-bottom:20px">@lang('site.products')</h3>
-                    {{-- Search form --}}
-                    <form action="{{ route('dashboard.products.index') }}" method="get">
-                        <div class="row">
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" name="search" value="{{ request()->search }}" placeholder="@lang('site.search')">
-                                </div>
-                                <div class="col-md-4">
-                                    {{-- Search by category --}}
-                                    <div class="form-group">
-                                        <select class="form-control" id="search_by" name="category_id">
-                                            <option value="">@lang('site.all_categories')</option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}" {{ $category->id==request()->category_id ? 'selected':''}}>{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>{{-- ./form group --}}
-                                </div> {{-- ./end col --}}
-                                <div class="col-md-4">
-                                    <button type="submit" class="btn btn-info">
-                                        <i class="fa fa-search"></i> @lang('site.search')
-                                    </button>
-                                    @if (auth()->user()->hasPermission('create_products'))
-                                        <a href="{{ route('dashboard.products.create') }}" class="btn btn-success">
-                                            <i class="fa fa-plus"></i> @lang('site.add')
-                                        </a>
-                                    @else
-                                        <a href="javascript:;" class="btn btn-success disabled">
-                                            <i class="fa fa-plus"></i> @lang('site.add')
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
-                    </form><!-- ./search form -->
+
+                    @include('dashboard.includes._search',[
+                        'route'=>'dashboard.products.index',
+                        'route_params' => [],
+                        'permission'=>'create_products',
+                        'add_btn' => true
+                        ])
 
                 </div><!-- ./box-header -->
                 <div class="box-body">
@@ -65,7 +39,7 @@
                                     <th>@lang('site.image')</th>
                                     <th>@lang('site.purchase_price')</th>
                                     <th>@lang('site.sale_price')</th>
-                                    <th>@lang('site.profit_percent') %</th>
+                                    <th>@lang('site.collect_price')</th>
                                     <th>@lang('site.stock')</th>
                                     <th>@lang('site.actions')</th>
                                 </tr>
@@ -82,7 +56,7 @@
                                         </td>
                                         <td>{{ $product->purchase_price }}</td>
                                         <td>{{ $product->sale_price }}</td>
-                                        <td>{{ $product->profit_percent }} %</td>
+                                        <td>{{ $product->collect_price }}</td>
                                         <td>{{ $product->stock }}</td>
                                         <td>
                                             @if (auth()->user()->hasPermission('update_products'))
@@ -125,13 +99,3 @@
     </div><!-- ./content wrapper -->
 
 @endsection
-@push('scripts')
-    <script>
-        $(document).ready(function(){
-            $('#search_by').on('change',function(){
-                var categoryId=$(this).val();
-                $(this).closest('form').submit();
-            });
-        });
-    </script>
-@endpush

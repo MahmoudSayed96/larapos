@@ -36,13 +36,11 @@ class ClientsController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3|max:20',
-            'phone' => 'required|min:1|array',
-            'phone.0' => 'required',
+            'phone' => 'max:20',
             'address' => 'required',
         ]);
 
         $request_data = $request->all();
-        $request_data['phone'] = array_filter($request->phone);
         Client::create($request_data);
         session()->flash('success', \Lang::get('site.added_successfully'));
         return redirect()->route('dashboard.clients.index');
@@ -74,13 +72,12 @@ class ClientsController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3|max:20',
-            'phone' => 'required|min:1|array',
-            'phone.0' => 'required',
+            'phone' => 'max:20',
             'address' => 'required',
         ]);
 
         $request_data = $request->all();
-        $request_data['phone'] = array_filter($request->phone);
+        // $request_data['phone'] = array_filter($request->phone);
         $client->update($request_data);
         session()->flash('success', \Lang::get('site.updated_successfully'));
         return redirect()->route('dashboard.clients.index');
@@ -91,6 +88,6 @@ class ClientsController extends Controller
         $client->delete();
         session()->flash('success', \Lang::get('site.deleted_successfully'));
 
-        return \redirect()->route('dashboard.products.index');
+        return \redirect()->route('dashboard.clients.index');
     } //end of destroy
 }

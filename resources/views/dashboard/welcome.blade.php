@@ -26,7 +26,7 @@
                             <p>@lang('site.orders')</p>
                             </div>
                             <div class="icon">
-                                <i class="fa fa-shopping-bag"></i>
+                                <i class="fa fa-shopping-cart"></i>
                             </div>
                             <a href="{{ route('dashboard.orders.index') }}" class="small-box-footer">@lang('site.show') <i class="fa fa-arrow-circle-right"></i></a>
                         </div>

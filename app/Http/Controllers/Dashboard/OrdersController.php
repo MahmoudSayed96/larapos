@@ -44,4 +44,13 @@ class OrdersController extends Controller
         session()->flash('success', \Lang::get('site.deleted_successfully'));
         return redirect()->route('dashboard.orders.index');
     } //end of destroy
+
+    // Print order.
+    public function print(Order $order){
+        $order = Order::findOrFail($order->id);
+        $order->update([
+            'is_printed' => 1
+        ]);
+        return response('true',200);
+    }
 }//end of controller

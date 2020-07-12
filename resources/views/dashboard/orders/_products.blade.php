@@ -1,6 +1,27 @@
-    <div class="box">
+@push('styles')
+    <style>
+        @media only print {
+            #print-area table{
+                width: 90%;
+                margin: 10px auto;
+                text-align:center;
+                border:1px solid #ddd;
+            }
+        }
+    </style>
+@endpush
+<div class="box">
     <div id="print-area">
         @if ($products->count()>0)
+            <!-- Client-info -->
+            <div class="client-info">
+                <ul class="list-unstyled">
+                    <li>@lang('site.date'): <strong dir="ltr">{{$order->created_at->toDateTimeString()}}</strong></li>
+                    <li>@lang('site.client_name'): <strong>{{$order->client->name}}</strong></li>
+                    <li>@lang('site.bill_no'): <strong>{{$order->id}}</strong></li>
+                </ul>
+            </div>
+            <!-- ./Client-info -->
             <table class="table table-hover text-center">
                 <thead>
                     <tr>
@@ -14,7 +35,7 @@
                         <tr>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->pivot->quantity }}</td>
-                            <td>{{ number_format($product->sale_price * $product->pivot->quantity,2) }}</td>
+                            <td>{{ number_format($product->getPriceByQuantity($product->pivot->quantity),2) }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -28,8 +49,10 @@
     </div>
     {{-- Pagination --}}
     {{ $products->appends(request()->query())->links() }}
-    <button id="print-btn" class="btn btn-primary btn-block">
-        <i class="fa fa-print"></i> @lang('site.print')
-    </button>
+    @if ($order->is_printed == 0)
+        <button id="print-btn" class="btn btn-primary btn-block" data-order="{{ $order->id }}" data-url="{{ route('dashboard.orders.print',$order) }}">
+            <i class="fa fa-print"></i> @lang('site.print')
+        </button>
+    @endif
 </div>
 

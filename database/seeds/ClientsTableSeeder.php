@@ -11,7 +11,7 @@ class ClientsTableSeeder extends Seeder
      */
     public function run()
     {
-        $clients = ['Ahmed', 'Mohamed', 'Mahmoud'];
+        $clients = ['Ahmed', 'Hassan', 'Mahmoud'];
         foreach ($clients as $client) {
             \App\Client::create([
                 'name' => $client,

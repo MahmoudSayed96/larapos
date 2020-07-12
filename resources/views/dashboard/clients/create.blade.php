@@ -36,13 +36,10 @@
                             <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" required>
                         </div>
                         {{-- Phone --}}
-                        @for ($i = 0; $i < 2; $i++)
                         <div class="form-group">
-                                <label>@lang('site.phone')</label>
-                                <input type="text" name="phone[]" class="form-control">
-                            </div>
-                        @endfor
-
+                            <label>@lang('site.phone')</label>
+                            <input type="text" name="phone" class="form-control">
+                        </div>
                         {{-- Address --}}
                         <div class="form-group">
                             <label for="address">@lang('site.address')</label>
