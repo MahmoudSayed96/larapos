@@ -69,7 +69,7 @@
                                         </td>
                                         <td>
                                             @if (auth()->user()->hasPermission('update_categories'))
-                                                <a href="{{ route('dashboard.categories.edit',$category->id) }}" class="btn btn-primary btn-sm">
+                                                <a href="{{ route('dashboard.categories.edit',$category->id) }}" class="btn btn-warning btn-sm">
                                                     <i class="fa fa-edit"></i> @lang('site.edit')
                                                 </a>
                                             @else

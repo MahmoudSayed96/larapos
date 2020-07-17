@@ -36,7 +36,7 @@
                                         <div class="panel panel-default">
                                             <div class="panel-body">
                                                 <div class="image-box" style="max-height: 300px">
-                                                    <img src="{{ $product->image_path }}" style="width:100%;min-height:250px;max-height:250px;" class="img-responsive" alt="{{ $product->name }}">
+                                                    <img src="{{ $product->image_path }}" style="width:100%;min-height:200px;max-height:200px;" class="img-responsive" alt="{{ $product->name }}">
                                                 </div>
                                                 <hr>
                                                 <ul class="list-group">

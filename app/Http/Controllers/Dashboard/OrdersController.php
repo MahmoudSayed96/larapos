@@ -20,7 +20,7 @@ class OrdersController extends Controller
     {
         $orders = Order::whereHas('client', function ($q) use ($request) {
             return $q->where('name', 'like', '%' . $request->search . '%');
-        })->paginate(10);
+        })->orderBy('created_at','desc')->paginate(10);
         return view('dashboard.orders.index', \compact('orders'));
     } //end of index
 

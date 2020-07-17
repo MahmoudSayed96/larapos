@@ -109,7 +109,7 @@
                                             <td>
                                                 @if ($order->is_printed == 0)
                                                     @if (auth()->user()->hasPermission('update_orders'))
-                                                        <a href="{{ route('dashboard.clients.orders.edit',[$order->client->id,$order->id]) }}" class="btn btn-primary btn-sm">
+                                                        <a href="{{ route('dashboard.clients.orders.edit',[$order->client->id,$order->id]) }}" class="btn btn-warning btn-sm">
                                                             <i class="fa fa-edit"></i> @lang('site.edit')
                                                         </a>
                                                     @else
@@ -157,6 +157,9 @@
                             <div class="lds-dual-ring"></div>
                         </div><!-- ./loading -->
                         <div class="order-products-list">
+                            @if (isset($order) && $order->is_printed == 0)
+                                @include('dashboard.orders._products',['order' => $order, 'products'=>$order->products])
+                            @endif
                         </div><!-- ./order products list-->
                     </div><!-- ./box-body -->
                     <!-- /.box-header -->

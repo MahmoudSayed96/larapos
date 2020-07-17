@@ -68,7 +68,7 @@
                                         </td>
                                         <td>
                                             @if (auth()->user()->hasPermission('update_users'))
-                                                <a href="{{ route('dashboard.users.edit',$user->id) }}" class="btn btn-primary btn-sm">
+                                                <a href="{{ route('dashboard.users.edit',$user->id) }}" class="btn btn-warning btn-sm">
                                                     <i class="fa fa-edit"></i> @lang('site.edit')
                                                 </a>
                                             @else

@@ -35,7 +35,6 @@ class OrdersController extends Controller
 
     public function store(Request $request, Client $client)
     {
-        // dd($request);
         $request->validate([
             'products' => 'required|array',
         ]);
@@ -57,10 +56,13 @@ class OrdersController extends Controller
         } //end of foreach
         // update total price
         $order->update(['total_price' => $total_price]);
-
+        $orders = $orders = Order::whereHas('client')->orderBy('created_at','desc')->paginate(10);
         session()->flash('success', \Lang::get('site.added_successfully'));
-        return redirect()->route('dashboard.orders.index');
+        // return redirect()->route('dashboard.orders.index');
+        return view('dashboard.orders.index',compact('order','orders'));
     } //end of store
+
+    // public function show(Client $client){}
 
     public function edit(Request $request, Client $client, Order $order)
     {
@@ -120,5 +122,11 @@ class OrdersController extends Controller
         }
         $order->delete();
     } // end of detach order
+
+    public function orders_list(int $id){
+        $client = Client::findOrFail($id);
+        $orders = $client->orders;
+        return view('dashboard.clients.orders.list',compact('client','orders'));
+    }// end of show_orders
 
 }

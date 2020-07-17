@@ -95,6 +95,12 @@ return [
     'printed'                       => 'Printed',
     'no_printed'                    => '-',
     'copyright'                     => 'All rights reserved.',
+    'month'                         => 'Month',
+    'year'                          => 'Year',
+    'add_to_stock'                  => 'New Quantity added to stock',
+    'show_orders'                  => 'Show Orders',
+    'reset'                        => 'Reset',
+    'select_year_and_month'        => 'Select month and year',
 
     'ar' => [
         'name'                     => 'Arabic Name',

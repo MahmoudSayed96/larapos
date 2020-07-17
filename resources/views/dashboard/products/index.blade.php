@@ -60,7 +60,7 @@
                                         <td>{{ $product->stock }}</td>
                                         <td>
                                             @if (auth()->user()->hasPermission('update_products'))
-                                                <a href="{{ route('dashboard.products.edit',$product->id) }}" class="btn btn-primary btn-sm">
+                                                <a href="{{ route('dashboard.products.edit',$product->id) }}" class="btn btn-warning btn-sm">
                                                     <i class="fa fa-edit"></i> @lang('site.edit')
                                                 </a>
                                             @else

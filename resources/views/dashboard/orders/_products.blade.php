@@ -28,6 +28,7 @@
                         <th>@lang('site.name')</th>
                         <th>@lang('site.quantity')</th>
                         <th>@lang('site.price')</th>
+                        <th>@lang('site.sale_type')</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +37,7 @@
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->pivot->quantity }}</td>
                             <td>{{ number_format($product->getPriceByQuantity($product->pivot->quantity),2) }}</td>
+                            <td>{{ $product->sale_type == 'normal' ? __('site.normal_price') : __('site.collect_price') }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -48,7 +50,7 @@
         @endif
     </div>
     {{-- Pagination --}}
-    {{ $products->appends(request()->query())->links() }}
+    {{-- {{ $products->appends(request()->query())->links() }} --}}
     @if ($order->is_printed == 0)
         <button id="print-btn" class="btn btn-primary btn-block" data-order="{{ $order->id }}" data-url="{{ route('dashboard.orders.print',$order) }}">
             <i class="fa fa-print"></i> @lang('site.print')

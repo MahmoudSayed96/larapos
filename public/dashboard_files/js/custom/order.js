@@ -71,6 +71,9 @@ $(document).ready(function () {
     // print order products list
     $(document).on('click', '#print-btn', function (e) {
         e.preventDefault();
+        // $(window).onafterprint = function () {
+        //     alert('Print');
+        // }
         var _url = $(this).data('url');
         $.ajax({
             url: _url,

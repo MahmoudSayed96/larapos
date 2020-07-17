@@ -20,6 +20,7 @@ Route::group(
             // Clients routes
             Route::resource('clients', 'ClientsController')->except(['show']);
             Route::resource('clients.orders', 'Client\OrdersController');
+            Route::get('client-orders/{id}/orders/list', 'Client\OrdersController@orders_list')->name('client.orders_list');
             // Orders routes
             Route::resource('orders', 'OrdersController');
             Route::get('/orders/{order}/products', 'OrdersController@products')->name('orders.products');

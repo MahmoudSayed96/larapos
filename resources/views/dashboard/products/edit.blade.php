@@ -83,7 +83,7 @@
                         </div>
                         {{-- Stock --}}
                         <div class="form-group">
-                            <label for="stock">@lang('site.new_quantity')</label>
+                            <label for="stock">@lang('site.add_to_stock')</label>
                             <input type="number" name="stock" id="stock" value="0" class="form-control">
                         </div>
                         {{-- Current Stock --}}

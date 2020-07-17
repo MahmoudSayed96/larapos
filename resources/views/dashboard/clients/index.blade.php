@@ -1,4 +1,5 @@
 @extends('layouts.dashboard.app')
+@section('title',__('site.clients'))
 @section('content')
 
     <div class="content-wrapper">
@@ -74,8 +75,17 @@
                                             @endif
                                         </td>
                                         <td>
+                                            @if (auth()->user()->hasPermission('read_clients'))
+                                                <a href="{{ route('dashboard.client.orders_list',$client->id) }}" class="btn btn-info btn-sm">
+                                                    <i class="fa fa-edit"></i> @lang('site.show_orders')
+                                                </a>
+                                            @else
+                                                <a href="javascript:;" class="btn btn-default btn-sm disabled">
+                                                    <i class="fa fa-pencil"></i> @lang('site.show_orders')
+                                                </a>
+                                            @endif
                                             @if (auth()->user()->hasPermission('update_clients'))
-                                                <a href="{{ route('dashboard.clients.edit',$client->id) }}" class="btn btn-primary btn-sm">
+                                                <a href="{{ route('dashboard.clients.edit',$client->id) }}" class="btn btn-warning btn-sm">
                                                     <i class="fa fa-edit"></i> @lang('site.edit')
                                                 </a>
                                             @else
